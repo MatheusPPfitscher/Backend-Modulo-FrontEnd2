@@ -1,15 +1,18 @@
 import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
-import { INote } from "../../../features/note/note";
+import { INote } from "../../../features/note/note-contracts";
 import { v4 as uuid } from "uuid";
 import { User } from "./User";
 
 @Entity()
 export class Note implements INote {
-    @Column()
-    descricao: string;
+    @PrimaryColumn({ type: 'uuid' })
+    uid: string;
 
     @Column()
-    detalhamento: string;
+    title: string;
+
+    @Column()
+    details: string;
 
     @ManyToOne(type => User)
     user: User;
@@ -20,4 +23,8 @@ export class Note implements INote {
     @UpdateDateColumn()
     updated_at: Date;
 
+    @BeforeInsert()
+    generateUid() {
+        this.uid = uuid();
+    }
 }

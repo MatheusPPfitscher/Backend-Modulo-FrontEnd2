@@ -1,14 +1,14 @@
 import { Request, Response, Router } from "express";
 import { UserRepository } from "../../core/database/repositories/user-repository";
-import { UserController } from "./user-controller";
+import { AuthController } from "./auth-controller";
 
-export class UserRouter {
+export class AuthRouter {
     static getRoutes() {
         const routes = Router();
         const userRepository = new UserRepository();
-        const userController = new UserController(userRepository);
+        const authController = new AuthController(userRepository);
+        routes.post("/", (req: Request, res: Response) => authController.logon);
 
-        routes.post('/', (req: Request, res: Response) => userController.createUser(req, res));
         return routes;
     }
 }

@@ -9,5 +9,5 @@ export const initServer = async () => {
 
     enabledRoutes(app);
 
-    await app.listen(process.env.PORT || 8081, () => console.log("Server is running..."));
+    await app.listen(process.env.API_PORT, () => console.log("Server is running..."));
 };
