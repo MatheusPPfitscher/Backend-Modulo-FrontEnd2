@@ -7,8 +7,7 @@ export class AuthRouter {
         const routes = Router();
         const userRepository = new UserRepository();
         const authController = new AuthController(userRepository);
-        routes.post("/", (req: Request, res: Response) => authController.logon);
-
+        routes.post("/", (req: Request, res: Response) => authController.login(req, res));
         return routes;
     }
 }

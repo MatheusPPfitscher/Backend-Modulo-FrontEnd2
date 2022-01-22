@@ -7,7 +7,6 @@ export class UserRouter {
         const routes = Router();
         const userRepository = new UserRepository();
         const userController = new UserController(userRepository);
-
         routes.post('/', (req: Request, res: Response) => userController.createUser(req, res));
         return routes;
     }

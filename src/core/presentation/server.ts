@@ -1,6 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import { enabledRoutes } from './routes';
+import dotenv from 'dotenv';
+
+dotenv.config();
+export const SECRET = process.env.TOKEN_SECRET as string;
 
 export const initServer = async () => {
     const app = express();
@@ -9,5 +13,5 @@ export const initServer = async () => {
 
     enabledRoutes(app);
 
-    await app.listen(process.env.API_PORT, () => console.log("Server is running..."));
+    await app.listen(process.env.PORT, () => console.log("Server is running..."));
 };

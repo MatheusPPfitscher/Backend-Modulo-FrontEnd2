@@ -1,17 +1,13 @@
-import { Repository } from "typeorm";
-import { INote, INoteRepository } from "../../../features/note/note-contracts";
-import { DatabaseConnection } from "../connections/connection";
-import { Note } from "../entities/Note";
-import { User } from "../entities/User";
-
-export class NoteRepository implements INoteRepository {
-    private repository: Repository<Note>;
-
-    constructor () {
-        this.repository = DatabaseConnection.getConnection().manager.getRepository(Note);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.NoteRepository = void 0;
+const connection_1 = require("../connections/connection");
+const Note_1 = require("../entities/Note");
+class NoteRepository {
+    constructor() {
+        this.repository = connection_1.DatabaseConnection.getConnection().manager.getRepository(Note_1.Note);
     }
-
-    async addNote(user: User, noteData: INote): Promise<Boolean> {
+    async addNote(user, noteData) {
         const noteEntity = this.repository.create(noteData);
         noteEntity.user = user;
         try {
@@ -22,25 +18,23 @@ export class NoteRepository implements INoteRepository {
             console.log(error);
             return false;
         }
-
     }
-
-    async viewNote(user: User, noteUid?: string): Promise<INote[]> {
+    async viewNote(user, noteUid) {
         console.log(user);
-        let notes: Note[] = [];
+        let notes = [];
         if (noteUid) {
             for (let note of user.notes) {
                 if (note.uid === noteUid)
                     notes.push(note);
             }
-        } else {
+        }
+        else {
             notes = user.notes;
             notes.sort((a, b) => a.created_at.getTime() - b.created_at.getTime());
         }
         return notes;
     }
-
-    async editNote(noteUid: string, noteData: INote): Promise<Boolean> {
+    async editNote(noteUid, noteData) {
         try {
             console.log(noteUid);
             console.log(noteData);
@@ -53,11 +47,11 @@ export class NoteRepository implements INoteRepository {
             return false;
         }
     }
-
-    async removeNote(noteUid: string): Promise<Boolean> {
+    async removeNote(noteUid) {
         try {
             const result = await this.repository.delete(noteUid);
-            if (result.affected) return true;
+            if (result.affected)
+                return true;
             return false;
         }
         catch (error) {
@@ -66,3 +60,4 @@ export class NoteRepository implements INoteRepository {
         }
     }
 }
+exports.NoteRepository = NoteRepository;
