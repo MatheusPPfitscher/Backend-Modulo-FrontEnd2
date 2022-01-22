@@ -14,9 +14,9 @@ module.exports = {
         migrationsDir: 'src/core/database/migrations'
     },
     synchronize: false,
-    // extra: {
-    //     ssl: {
-    //         rejectUnauthorized: false,
-    //     },
-    // },
+    extra: {
+        ssl: {
+            rejectUnauthorized: false,
+        },
+    },
 };
