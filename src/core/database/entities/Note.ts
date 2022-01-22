@@ -1,4 +1,4 @@
-import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { INote } from "../../../features/note/note-contracts";
 import { v4 as uuid } from "uuid";
 import { User } from "./User";
@@ -14,14 +14,12 @@ export class Note implements INote {
     @Column()
     details: string;
 
-    @ManyToOne(type => User)
-    user: User;
-
     @CreateDateColumn()
     created_at: Date;
 
-    @UpdateDateColumn()
-    updated_at: Date;
+    @ManyToOne(type => User, user => user.notes)
+    @JoinColumn({ name: "userid" })
+    user: User;
 
     @BeforeInsert()
     generateUid() {

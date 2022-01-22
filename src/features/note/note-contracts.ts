@@ -1,11 +1,15 @@
+import { User } from "../../core/database/entities/User";
+
 export interface INote {
-    uid: string,
+    uid?: string;
     title: string,
     details: string;
+    created_at?: Date;
 }
 
 export interface INoteRepository {
-    addNote(username: string, note: INote): string;
-    editNote(username: string, noteUid: string, note: INote): string;
-    removeNote(username: string, noteUid: string): string;
+    addNote(user: User, noteData: INote): Promise<Boolean>;
+    viewNote(user: User, noteUid?: string): Promise<INote[]>;
+    editNote(noteUid: string, note: INote): Promise<Boolean>;
+    removeNote(noteUid: string): Promise<Boolean>;
 }
