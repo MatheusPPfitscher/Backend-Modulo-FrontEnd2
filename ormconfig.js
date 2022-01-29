@@ -10,13 +10,13 @@ module.exports = {
         process.env.MIGRATIONS_DIR
     ],
     cli: {
-        entitiesDir: 'src/core/database/entities',
-        migrationsDir: 'src/core/database/migrations'
+        entitiesDir: 'src/core/infra/database/entities',
+        migrationsDir: 'src/core/infra/database/migrations'
     },
     synchronize: false,
-    extra: {
-        ssl: {
-            rejectUnauthorized: false,
-        },
-    },
+    // extra: {
+    //     ssl: {
+    //         rejectUnauthorized: false,
+    //     },
+    // },
 };
