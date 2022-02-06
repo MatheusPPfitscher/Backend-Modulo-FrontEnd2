@@ -11,11 +11,9 @@ export class EditNoteController implements Controller {
     async execute(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): Promise<any> {
         try {
             const useCaseData: IEditNoteParams = {
-                noteUid: req.params.uid,
-                noteData: {
-                    title: req.body.title,
-                    details: req.body.details
-                }
+                uid: req.params.uid,
+                title: req.body.title,
+                details: req.body.details
             };
 
             const result = await this.editNoteUseCase.run(useCaseData);

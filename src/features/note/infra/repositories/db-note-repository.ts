@@ -2,6 +2,7 @@ import { Repository } from "typeorm";
 import { DatabaseConnection } from "../../../../core/infra/database/connections/connection";
 import { Note } from "../../../../core/infra/database/entities/Note";
 import { User } from "../../../../core/infra/database/entities/User";
+import { NoteNotFoundError } from "../../domain/errors/note-not-found-error";
 import { INote } from "../../domain/model/note";
 import { INoteRepository } from "../../domain/model/note-repository";
 
@@ -25,9 +26,12 @@ export class NoteRepository implements INoteRepository {
         return result;
     }
 
-    async editNote(noteUid: string, noteData: INote) {
-        let result = await this.repository.update({ uid: noteUid }, noteData);
-        return result;
+    async editNote(noteData: INote) {
+        let editedNote = await this.repository.preload(noteData);
+        if (editedNote) {
+            await this.repository.save(editedNote);
+        } else throw new NoteNotFoundError();
+        return editedNote;
     }
 
     async removeNote(noteUid: string) {

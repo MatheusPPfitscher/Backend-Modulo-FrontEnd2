@@ -11,7 +11,7 @@ export class DeleteNoteController implements Controller {
     async execute(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): Promise<any> {
         try {
             const useCaseData: IDeleteNoteParams = {
-                noteUid: req.params.uid
+                uid: req.params.uid
             };
 
             const result = await this.deleteNoteUseCase.run(useCaseData);
