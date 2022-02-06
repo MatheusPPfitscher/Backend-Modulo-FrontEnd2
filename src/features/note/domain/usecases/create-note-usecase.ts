@@ -8,7 +8,8 @@ import { INoteRepository } from "../model/note-repository";
 
 export interface ICreateNoteParams {
     userId: number,
-    noteData: INote;
+    title: string,
+    details: string;
 }
 
 export class CreateNoteUseCase implements IUseCase {
@@ -20,8 +21,13 @@ export class CreateNoteUseCase implements IUseCase {
     async run(data: ICreateNoteParams) {
         const user: User | undefined = await this.userRepository.retrieveUserById(data.userId);
         if (user !== undefined) {
-            const noteEntity = await this.noteRepository.createNote(user, data.noteData);
+            const noteData: INote = {
+                title: data.title,
+                details: data.details
+            };
+            const noteEntity = await this.noteRepository.createNote(user, noteData);
             await this.cacheRepository.save(`note:${noteEntity.uid}`, noteEntity);
+            this.cacheRepository.setRefreshing(true);
             return noteEntity;
         } else throw new UserNotFoundError();
     }

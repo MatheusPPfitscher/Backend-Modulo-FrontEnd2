@@ -14,9 +14,7 @@ export class LoginUseCase implements IUseCase {
     ) { }
 
     async run(data: ILoginParams) {
-        console.log(data);
         const userTryingToLogin = await this.userRepository.retrieveUserByName(data.username);
-        console.log(userTryingToLogin);
         if (userTryingToLogin !== undefined) {
             if (userTryingToLogin.password === data.password) {
                 const token = generateToken({ userid: userTryingToLogin.userid, username: data.username });

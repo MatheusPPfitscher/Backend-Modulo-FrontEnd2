@@ -11,10 +11,8 @@ export class CreateNoteController implements Controller {
         try {
             const useCaseData: ICreateNoteParams = {
                 userId: res.locals.userId as number,
-                noteData: {
-                    title: req.body.title,
-                    details: req.body.details
-                }
+                title: req.body.title,
+                details: req.body.details
             };
 
             const result = await this.addNoteUseCase.run(useCaseData);

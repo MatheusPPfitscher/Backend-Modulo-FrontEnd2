@@ -18,14 +18,12 @@ export class ViewNoteUseCase implements IUseCase {
         if (data.noteUid) {
             let noteCached = await this.cacheRepository.retrieve(`note:${data.noteUid}`);
             if (noteCached) {
-                return noteCached;
+                return [noteCached];
             }
         }
         let allCachedNotesFromUser = await this.cacheRepository.retrieve(`user:${data.userId}:notes`);
         if (allCachedNotesFromUser) {
-            if (this.cacheRepository.needRefreshing()) {
-                this.cacheRepository.delete(`user:${data.userId}:notes`);
-            } else {
+            if (!this.cacheRepository.needRefreshing()) {
                 return allCachedNotesFromUser;
             }
         }
@@ -43,6 +41,7 @@ export class ViewNoteUseCase implements IUseCase {
                 resultingNotes.sort((a, b) => a.created_at.getTime() - b.created_at.getTime());
             }
             await this.cacheRepository.save(`user:${data.userId}:notes`, resultingNotes);
+            this.cacheRepository.setRefreshing(false);
             return resultingNotes;
         } else throw new UserNotFoundError();
     }

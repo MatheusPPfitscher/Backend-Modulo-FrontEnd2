@@ -12,7 +12,6 @@ export class ViewNoteController implements Controller {
                 userId: res.locals.userId as number,
                 noteUid: req.params.uid
             };
-            console.log(useCaseData);
             const result = await this.viewNoteUseCase.run(useCaseData);
             successResponse(res, "NoteView", result);
         }

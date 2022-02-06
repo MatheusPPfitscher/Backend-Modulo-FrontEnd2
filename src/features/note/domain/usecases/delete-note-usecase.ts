@@ -15,6 +15,7 @@ export class DeleteNoteUseCase implements IUseCase {
         if (data.uid) {
             const result = await this.noteRepository.removeNote(data.uid);
             await this.cacheRepository.delete(`note:${data.uid}`);
+            this.cacheRepository.setRefreshing(true);
             return result;
         } else throw new NoteNotFoundError();
     }
