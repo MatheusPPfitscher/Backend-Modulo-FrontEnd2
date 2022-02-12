@@ -25,9 +25,12 @@ export class UserRepository implements IUserRepository {
         return result;
     }
 
-    async createUser(userFormulary: IUser): Promise<Boolean> {
+    async createUser(userFormulary: IUser): Promise<IUser> {
         const userEntity = this.repository.create(userFormulary);
         await this.repository.save(userEntity);
-        return true;
+        return {
+            username: userEntity.username,
+            userid: userEntity.userid
+        };
     }
 }
