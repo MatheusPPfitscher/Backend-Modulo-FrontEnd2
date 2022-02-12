@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55.88% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>19/34</span>
+                <span class='fraction'>34/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55.88% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/34</span>
+                <span class='fraction'>34/34</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -112,26 +112,26 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { IUseCase } from "../../../../core/domain/contracts/usecase";
 import { ICacheRepository } from "../../../../core/domain/model/cache-repository";
-import { User } from "../../../../core/infra/database/entities/User";
+import { IUser } from "../../../user/domain/model/user";
 import { IUserRepository } from "../../../user/domain/model/user-repository";
 import { UserNotFoundError } from "../errors/user-not-found-error";
 import { INote } from "../model/note";
@@ -144,24 +144,24 @@ export interface ICreateNoteParams {
 }
 &nbsp;
 export class CreateNoteUseCase implements IUseCase {
-<span class="fstat-no" title="function not covered" >    constructor (private userRepository: IUserRepository,</span>
-<span class="cstat-no" title="statement not covered" >        private noteRepository: INoteRepository,</span>
-<span class="cstat-no" title="statement not covered" >        private cacheRepository: ICacheRepository) {</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    constructor (private userRepository: IUserRepository,
+        private noteRepository: INoteRepository,
+        private cacheRepository: ICacheRepository) {
+    }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    async run(data: ICreateNoteParams) {</span>
-<span class="cstat-no" title="statement not covered" >        const user: User | undefined = await this.userRepository.retrieveUserById(data.userId);</span>
-<span class="cstat-no" title="statement not covered" >        if (user !== undefined) {</span>
-<span class="cstat-no" title="statement not covered" >            const noteData: INote = {</span>
-<span class="cstat-no" title="statement not covered" >                title: data.title,</span>
-<span class="cstat-no" title="statement not covered" >                details: data.details</span>
-<span class="cstat-no" title="statement not covered" >            };</span>
-<span class="cstat-no" title="statement not covered" >            const noteEntity = await this.noteRepository.createNote(user, noteData);</span>
-<span class="cstat-no" title="statement not covered" >            await this.cacheRepository.save(`note:${noteEntity.uid}`, noteEntity);</span>
-<span class="cstat-no" title="statement not covered" >            this.cacheRepository.setRefreshing(true);</span>
-<span class="cstat-no" title="statement not covered" >            return noteEntity;</span>
-<span class="cstat-no" title="statement not covered" >        } else throw new UserNotFoundError();</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    async run(data: ICreateNoteParams) {
+        const user: IUser | undefined = await this.userRepository.retrieveUserById(data.userId);
+        if (user !== undefined) {
+            const noteData: INote = {
+                title: data.title,
+                details: data.details
+            };
+            const noteEntity = await this.noteRepository.createNote(user, noteData);
+            await this.cacheRepository.save(`note:${noteEntity.uid}`, noteEntity);
+            this.cacheRepository.setRefreshing(true);
+            return noteEntity;
+        } else throw new UserNotFoundError();
+    }
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -169,7 +169,7 @@ export class CreateNoteUseCase implements IUseCase {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Feb 12 2022 00:54:42 GMT-0300 (Horário Padrão de Brasília)
+                at Sat Feb 12 2022 19:51:47 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

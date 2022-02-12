@@ -1,8 +1,8 @@
 import { IUseCase } from "../../../../core/domain/contracts/usecase";
 import { ICacheRepository } from "../../../../core/domain/model/cache-repository";
-import { Note } from "../../../../core/infra/database/entities/Note";
 import { IUserRepository } from "../../../user/domain/model/user-repository";
 import { UserNotFoundError } from "../errors/user-not-found-error";
+import { INote } from "../model/note";
 
 export interface IViewNoteParams {
     userId: number;
@@ -30,15 +30,17 @@ export class ViewNoteUseCase implements IUseCase {
 
         const user = await this.userRepository.retrieveUserById(data.userId);
         if (user !== undefined) {
-            let resultingNotes: Note[] = [];
+            let resultingNotes: INote[] = [];
             if (data.noteUid) {
-                let retrievedNote = user.notes.find(note => note.uid === data.noteUid);
+                let retrievedNote = user.notes!.find(note => note.uid === data.noteUid);
                 if (retrievedNote) {
                     resultingNotes.push(retrievedNote);
                 }
             } else {
-                resultingNotes = user.notes;
-                resultingNotes.sort((a, b) => a.created_at.getTime() - b.created_at.getTime());
+                resultingNotes = user.notes!;
+                if (resultingNotes.length > 1) {
+                    resultingNotes.sort((a, b) => a.created_at!.getTime() - b.created_at!.getTime());
+                }
             }
             await this.cacheRepository.save(`user:${data.userId}:notes`, resultingNotes);
             this.cacheRepository.setRefreshing(false);

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Controller } from "../../../../core/presentation/contracts/controller";
+import { MissingFieldError } from "../../../../core/presentation/errors/missing-field-error";
 import { failureResponse, successResponse } from "../../../../core/presentation/helpers/http-handler";
 import { ILoginParams, LoginUseCase } from "../../domain/usecases/login-usecase";
 
@@ -12,6 +13,9 @@ export class LoginController implements Controller {
                 username: req.body.username,
                 password: req.body.password
             };
+            if (!useCaseData.username) {
+                throw new MissingFieldError("username");
+            }
             const logon = await this.loginUseCase.run(useCaseData);
             successResponse(res, "LogonSuccessful", logon);
         }

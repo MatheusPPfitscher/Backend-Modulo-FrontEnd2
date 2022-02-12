@@ -2,6 +2,7 @@ import { UserRepository } from "../../../../../src/core/infra/database/repositor
 import { InvalidCredentialsError } from "../../../../../src/features/auth/domain/errors/invalid-credentials-error";
 import { ILoginParams, LoginUseCase } from "../../../../../src/features/auth/domain/usecases/login-usecase";
 import { generateToken } from "../../../../../src/features/auth/infra/adapters/token-generation";
+import { IUser } from "../../../../../src/features/user/domain/model/user";
 
 // mock all depedencies
 jest.mock("../../../../../src/core/infra/database/repositories/db-user-repository");
@@ -59,7 +60,7 @@ describe("Auth feature", () => {
                 password: "OutroTeste"
             };
 
-            const stubReturn = {
+            const stubReturn: IUser = {
                 ...testData,
                 userid: 0,
                 notes: []

@@ -18,9 +18,6 @@ export class SignUpUseCase implements IUseCase {
 
     async run(data: ISignUpParams) {
 
-        if (!data.username.length) {
-            throw new InvalidUsernameError();
-        }
         if (data.username.length > USERNAME_LENGTH) {
             throw new UsernameLengthError();
         }

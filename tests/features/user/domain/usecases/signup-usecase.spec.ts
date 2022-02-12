@@ -22,17 +22,6 @@ describe("User feature", () => {
             jest.resetAllMocks();
         });
 
-        it("Should throw InvalidUsernameError when the username is empty", async () => {
-            const testData: ISignUpParams = {
-                username: "",
-                password: ""
-            };
-
-            const sut = makeSut();
-
-            expect(sut.run(testData)).rejects.toThrowError(InvalidUsernameError);
-        });
-
         it("Should throw UsernameLengthError if the Username length is exceeded", () => {
             const testData: ISignUpParams = {
                 username: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -54,7 +43,8 @@ describe("User feature", () => {
             expect(sut.run(testData)).rejects.toThrowError(PasswordLengthError);
         });
 
-        it("When provided with a valid IUser object, Should throw UserAlreadyExistsError if the UserRepository returns an object", async () => {
+        it(`When provided with a valid IUser object, Should throw UserAlreadyExistsError 
+        if the UserRepository returns an object`, async () => {
             const testData: ISignUpParams = {
                 username: "teste",
                 password: "teste"
@@ -65,11 +55,6 @@ describe("User feature", () => {
                 userid: 0,
                 notes: []
             });
-            // jest.spyOn(UserRepositoryMock.prototype, "retrieveUserByName").mockResolvedValue({
-            //     ...testData,
-            //     userid: 0,
-            //     notes: []
-            // });
 
             const sut = makeSut();
 
@@ -86,7 +71,6 @@ describe("User feature", () => {
                 password: "teste"
             };
 
-            // UserRepositoryMock.prototype.retrieveUserById.mockResolvedValue(undefined);
             UserRepositoryMock.prototype.createUser.mockResolvedValue({
                 username: testData.username,
                 userid: 0

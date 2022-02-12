@@ -11,12 +11,12 @@ export class UserRepository implements IUserRepository {
         this.repository = DatabaseConnection.getConnection().manager.getRepository(User);
     }
 
-    async retrieveUserByName(username: string): Promise<User | undefined> {
+    async retrieveUserByName(username: string): Promise<IUser | undefined> {
         const result = await this.repository.findOne({ where: { username } });
         return result;
     }
 
-    async retrieveUserById(userid: number): Promise<User | undefined> {
+    async retrieveUserById(userid: number): Promise<IUser | undefined> {
         const result = await this.repository.findOne(
             {
                 where: { userid },

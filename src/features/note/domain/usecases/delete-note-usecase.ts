@@ -1,6 +1,5 @@
 import { IUseCase } from "../../../../core/domain/contracts/usecase";
 import { ICacheRepository } from "../../../../core/domain/model/cache-repository";
-import { NoteNotFoundError } from "../errors/note-not-found-error";
 import { INoteRepository } from "../model/note-repository";
 
 export interface IDeleteNoteParams {
@@ -12,11 +11,9 @@ export class DeleteNoteUseCase implements IUseCase {
         private cacheRepository: ICacheRepository) { }
 
     async run(data: IDeleteNoteParams) {
-        if (data.uid) {
-            const result = await this.noteRepository.removeNote(data.uid);
-            await this.cacheRepository.delete(`note:${data.uid}`);
-            this.cacheRepository.setRefreshing(true);
-            return result;
-        } else throw new NoteNotFoundError();
+        const result = await this.noteRepository.removeNote(data.uid);
+        await this.cacheRepository.delete(`note:${data.uid}`);
+        this.cacheRepository.setRefreshing(true);
+        return result;
     }
 }

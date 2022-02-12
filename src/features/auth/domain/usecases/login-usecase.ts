@@ -1,5 +1,5 @@
 import { IUseCase } from "../../../../core/domain/contracts/usecase";
-import { UserRepository } from "../../../../core/infra/database/repositories/db-user-repository";
+import { IUserRepository } from "../../../user/domain/model/user-repository";
 import { generateToken } from "../../infra/adapters/token-generation";
 import { InvalidCredentialsError } from "../errors/invalid-credentials-error";
 
@@ -10,14 +10,14 @@ export interface ILoginParams {
 
 export class LoginUseCase implements IUseCase {
     constructor (
-        private userRepository: UserRepository
+        private userRepository: IUserRepository
     ) { }
 
     async run(data: ILoginParams) {
         const userTryingToLogin = await this.userRepository.retrieveUserByName(data.username);
         if (userTryingToLogin !== undefined) {
             if (userTryingToLogin.password === data.password) {
-                const token = generateToken({ userid: userTryingToLogin.userid, username: data.username });
+                const token = generateToken({ userid: userTryingToLogin.userid!, username: data.username });
                 return token;
             } else throw new InvalidCredentialsError();
         } else throw new InvalidCredentialsError();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1644638082689" clover="3.2.0">
-  <project timestamp="1644638082690" name="All files">
-    <metrics statements="804" coveredstatements="457" conditionals="20" coveredconditionals="19" methods="65" coveredmethods="10" elements="889" coveredelements="486" complexity="0" loc="804" ncloc="804" packages="24" files="38" classes="38"/>
+<coverage generated="1644706307792" clover="3.2.0">
+  <project timestamp="1644706307792" name="All files">
+    <metrics statements="838" coveredstatements="475" conditionals="22" coveredconditionals="21" methods="65" coveredmethods="12" elements="925" coveredelements="508" complexity="0" loc="838" ncloc="838" packages="24" files="38" classes="38"/>
     <package name="core.domain.errors">
       <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="domain-error.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\core\domain\errors\domain-error.ts">
@@ -10,10 +10,10 @@
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="cond" truecount="0" falsecount="1"/>
-        <line num="8" count="2" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="cond" truecount="0" falsecount="1"/>
+        <line num="8" count="3" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
       </file>
     </package>
@@ -252,7 +252,7 @@
       </file>
     </package>
     <package name="core.presentation.errors">
-      <metrics statements="9" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="20" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="controller-error.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\core\presentation\errors\controller-error.ts">
         <metrics statements="9" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -264,6 +264,20 @@
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
+      </file>
+      <file name="missing-field-error.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\core\presentation\errors\missing-field-error.ts">
+        <metrics statements="11" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
       </file>
     </package>
     <package name="core.presentation.helpers">
@@ -381,9 +395,9 @@
       </file>
     </package>
     <package name="features.auth.presentation.controllers">
-      <metrics statements="22" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <metrics statements="26" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="login-controller.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\auth\presentation\controllers\login-controller.ts">
-        <metrics statements="22" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="26" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -393,7 +407,7 @@
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -405,7 +419,11 @@
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
       </file>
     </package>
     <package name="features.auth.presentation.routes">
@@ -430,7 +448,7 @@
       </file>
     </package>
     <package name="features.note.domain.errors">
-      <metrics statements="16" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <metrics statements="16" coveredstatements="13" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="1"/>
       <file name="note-not-found-error.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\domain\errors\note-not-found-error.ts">
         <metrics statements="8" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -443,21 +461,21 @@
         <line num="8" count="1" type="stmt"/>
       </file>
       <file name="user-not-found-error.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\domain\errors\user-not-found-error.ts">
-        <metrics statements="8" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="8" coveredstatements="8" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
+        <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
       </file>
     </package>
     <package name="features.note.domain.usecases">
-      <metrics statements="128" coveredstatements="64" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <metrics statements="124" coveredstatements="77" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="2"/>
       <file name="create-note-usecase.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\domain\usecases\create-note-usecase.ts">
-        <metrics statements="34" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="34" coveredstatements="34" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -473,28 +491,50 @@
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
+        <line num="16" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
+        <line num="21" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="23" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="33" count="3" type="stmt"/>
         <line num="34" count="1" type="stmt"/>
       </file>
       <file name="delete-note-usecase.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\domain\usecases\delete-note-usecase.ts">
-        <metrics statements="22" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="19" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+      </file>
+      <file name="edit-note-usecase.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\domain\usecases\edit-note-usecase.ts">
+        <metrics statements="21" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -506,47 +546,19 @@
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-      </file>
-      <file name="edit-note-usecase.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\domain\usecases\edit-note-usecase.ts">
-        <metrics statements="24" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
       </file>
       <file name="view-note-usecase.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\domain\usecases\view-note-usecase.ts">
-        <metrics statements="48" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="50" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -594,7 +606,9 @@
         <line num="45" count="0" type="stmt"/>
         <line num="46" count="0" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
-        <line num="48" count="1" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
       </file>
     </package>
     <package name="features.note.infra.repositories">
@@ -645,64 +659,9 @@
       </file>
     </package>
     <package name="features.note.presentation.controllers">
-      <metrics statements="97" coveredstatements="45" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <metrics statements="126" coveredstatements="49" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
       <file name="create-note-controller.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\presentation\controllers\create-note-controller.ts">
-        <metrics statements="25" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-      </file>
-      <file name="delete-note-controller.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\presentation\controllers\delete-note-controller.ts">
-        <metrics statements="24" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
-      </file>
-      <file name="edit-note-controller.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\presentation\controllers\edit-note-controller.ts">
-        <metrics statements="26" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="34" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -728,10 +687,18 @@
         <line num="23" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
       </file>
-      <file name="view-note-controller.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\presentation\controllers\view-note-controller.ts">
-        <metrics statements="22" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="delete-note-controller.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\presentation\controllers\delete-note-controller.ts">
+        <metrics statements="29" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -741,7 +708,77 @@
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+      </file>
+      <file name="edit-note-controller.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\presentation\controllers\edit-note-controller.ts">
+        <metrics statements="35" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+      </file>
+      <file name="view-note-controller.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\note\presentation\controllers\view-note-controller.ts">
+        <metrics statements="28" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -753,7 +790,13 @@
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
       </file>
     </package>
     <package name="features.note.presentation.middlewares">
@@ -846,18 +889,7 @@
       </file>
     </package>
     <package name="features.user.domain.errors">
-      <metrics statements="35" coveredstatements="35" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
-      <file name="empty-username-error.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\user\domain\errors\empty-username-error.ts">
-        <metrics statements="8" coveredstatements="8" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-      </file>
+      <metrics statements="27" coveredstatements="27" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
       <file name="password-length-error.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\user\domain\errors\password-length-error.ts">
         <metrics statements="9" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
@@ -896,9 +928,9 @@
       </file>
     </package>
     <package name="features.user.domain.usecases">
-      <metrics statements="40" coveredstatements="40" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+      <metrics statements="37" coveredstatements="37" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <file name="signup-usecase.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\user\domain\usecases\signup-usecase.ts">
-        <metrics statements="40" coveredstatements="40" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+        <metrics statements="37" coveredstatements="37" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -914,37 +946,34 @@
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="16" count="5" type="stmt"/>
-        <line num="17" count="5" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
         <line num="19" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="20" count="5" type="stmt"/>
-        <line num="21" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="cond" truecount="1" falsecount="0"/>
         <line num="22" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
-        <line num="24" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="25" count="1" type="stmt"/>
+        <line num="24" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="25" count="4" type="cond" truecount="1" falsecount="0"/>
         <line num="26" count="1" type="stmt"/>
-        <line num="27" count="5" type="stmt"/>
-        <line num="28" count="5" type="cond" truecount="1" falsecount="0"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="31" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="32" count="2" type="stmt"/>
-        <line num="33" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
+        <line num="30" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
         <line num="34" count="1" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
       </file>
     </package>
     <package name="features.user.presentation.controllers">
-      <metrics statements="24" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <metrics statements="29" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="signup-controller.ts" path="D:\OneDrive\TecnologiaInformacao\GrowDev\QualidadeSoftware\BackEnd-Avaliacao-QualidadeSoftware\src\features\user\presentation\controllers\signup-controller.ts">
-        <metrics statements="24" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="29" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -955,7 +984,7 @@
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -968,7 +997,12 @@
         <line num="21" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
       </file>
     </package>
     <package name="features.user.presentation.routes">
