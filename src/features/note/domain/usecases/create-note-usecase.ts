@@ -7,7 +7,7 @@ import { INote } from "../model/note";
 import { INoteRepository } from "../model/note-repository";
 
 export interface ICreateNoteParams {
-    userId: number,
+    userid: number,
     title: string,
     details: string;
 }
@@ -19,7 +19,7 @@ export class CreateNoteUseCase implements IUseCase {
     }
 
     async run(data: ICreateNoteParams) {
-        const user: IUser | undefined = await this.userRepository.retrieveUserById(data.userId);
+        const user: IUser | undefined = await this.userRepository.retrieveUserById(data.userid);
         if (user !== undefined) {
             const noteData: INote = {
                 title: data.title,

@@ -23,7 +23,7 @@ const makeSut = () => {
 };
 
 describe("Note feature", () => {
-    describe("Create Note Usecase tests", () => {
+    describe("Create Note Usecase Unity tests", () => {
 
         beforeEach(() => {
             jest.resetAllMocks();
@@ -31,7 +31,7 @@ describe("Note feature", () => {
 
         it("Should throw UserNotFoundError if userid provided is not found by the UserRepository", () => {
             const testData: ICreateNoteParams = {
-                userId: 0,
+                userid: 0,
                 title: "Hmmm",
                 details: "Ora Ora Ora"
             };
@@ -41,10 +41,10 @@ describe("Note feature", () => {
             expect(sut.run(testData)).rejects.toThrowError(UserNotFoundError);
         });
 
-        it(`Should call noteRepository with user and return result from noteRepository 
-        when userRepository returns a valid user`, async () => {
+        it(`Should call noteRepository.create with user and return result from noteRepository.createNote 
+        after userRepository returns a valid user`, async () => {
             const testData: ICreateNoteParams = {
-                userId: 0,
+                userid: 0,
                 title: "Hmmm",
                 details: "Ora Ora Ora"
             };
@@ -73,9 +73,9 @@ describe("Note feature", () => {
             expect(result).toMatchObject(fakeNote);
         });
 
-        it(`Should call cacheRepository save and refreshing after successful`, async () => {
+        it(`Should call cacheRepository.save and .setRefreshing(true) after return fron noteRepository.createNote`, async () => {
             const testData: ICreateNoteParams = {
-                userId: 0,
+                userid: 0,
                 title: "Hmmm",
                 details: "Ora Ora Ora"
             };
@@ -102,7 +102,7 @@ describe("Note feature", () => {
 
             expect.assertions(2);
             expect(CacheRepositoryMock.prototype.save).toBeCalled();
-            expect(CacheRepositoryMock.prototype.setRefreshing).toBeCalled();
+            expect(CacheRepositoryMock.prototype.setRefreshing).toBeCalledWith(true);
         });
     });
 });

@@ -1,6 +1,6 @@
 import { IUseCase } from "../../../../core/domain/contracts/usecase";
 import { ICacheRepository } from "../../../../core/domain/model/cache-repository";
-import { NoteRepository } from "../../infra/repositories/db-note-repository";
+import { INoteRepository } from "../model/note-repository";
 
 export interface IEditNoteParams {
     uid: string;
@@ -9,7 +9,7 @@ export interface IEditNoteParams {
 }
 
 export class EditNoteUseCase implements IUseCase {
-    constructor (private noteRepository: NoteRepository,
+    constructor (private noteRepository: INoteRepository,
         private cacheRepository: ICacheRepository) { }
 
     async run(data: IEditNoteParams) {

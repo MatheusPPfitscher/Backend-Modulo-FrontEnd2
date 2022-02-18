@@ -1,11 +1,15 @@
 import jwt from 'jsonwebtoken';
-import { SECRET, TOKEN_EXPIRATION_TIME } from "../../../../core/presentation/server";
 import { IPayload } from '../../domain/model/payload';
+import dotenv from 'dotenv';
+
+dotenv.config();
+const SECRET = process.env.TOKEN_SECRET as string;
+const TOKEN_EXPIRATION_TIME = process.env.TOKEN_EXPIRATION_TIME as string;
 
 export function generateToken(payload: IPayload): string {
     const token = jwt.sign(
         {
-            userId: payload.userid,
+            userid: payload.userid,
             username: payload.username
         },
         SECRET,

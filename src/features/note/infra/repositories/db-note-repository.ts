@@ -26,16 +26,26 @@ export class NoteRepository implements INoteRepository {
         return result;
     }
 
-    async editNote(noteData: INote) {
+    async editNote(noteData: INote): Promise<INote> {
         let editedNote = await this.repository.preload(noteData);
         if (editedNote) {
             await this.repository.save(editedNote);
         } else throw new NoteNotFoundError();
-        return editedNote;
+        const result: INote = {
+            uid: editedNote.uid,
+            title: editedNote.title,
+            details: editedNote.details,
+            created_at: editedNote.created_at
+        };
+        return result;
     }
 
     async removeNote(noteUid: string) {
         const result = await this.repository.delete(noteUid);
-        return result;
+        return { affected: result.affected };
+    }
+
+    async clear() {
+        await this.repository.clear();
     }
 }

@@ -1,11 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import { makeRoutes } from './routes';
-import dotenv from 'dotenv';
-
-dotenv.config();
-export const SECRET = process.env.TOKEN_SECRET as string;
-export const TOKEN_EXPIRATION_TIME: number = 7 * 60;
 
 export const createServer = () => {
     const app = express();

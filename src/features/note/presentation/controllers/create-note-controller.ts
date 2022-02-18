@@ -11,13 +11,13 @@ export class CreateNoteController implements Controller {
     async execute(req: Request, res: Response) {
         try {
             const useCaseData: ICreateNoteParams = {
-                userId: res.locals.userId as number,
+                userid: res.locals.userid as number,
                 title: req.body.title,
                 details: req.body.details
             };
 
-            if (!useCaseData.userId) {
-                throw new MissingFieldError("userId");
+            if (!useCaseData.userid) {
+                throw new MissingFieldError("userid");
             }
 
             if (!useCaseData.title) {

@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
-import { SECRET } from "../../../../core/presentation/server";
+import dotenv from 'dotenv';
+
+dotenv.config();
+const SECRET = process.env.TOKEN_SECRET as string;
 
 export function extractTokenFromHeader(authHeader: string): string {
     return authHeader.split(" ")[1];
@@ -11,7 +14,7 @@ export const validateToken = function (req: Request, res: Response, next: NextFu
     try {
         const token = extractTokenFromHeader(authHeader);
         let data = jwt.verify(token, SECRET);
-        res.locals.userId = data.userId;
+        res.locals.userid = data.userid;
         next();
     }
     catch {

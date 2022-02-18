@@ -1,7 +1,6 @@
 import { IUseCase } from "../../../../core/domain/contracts/usecase";
 import { UserRepository } from "../../../../core/infra/database/repositories/db-user-repository";
 import { PASSWORD_LENGTH, USERNAME_LENGTH } from "../contracts/user-limits";
-import { InvalidUsernameError } from "../errors/empty-username-error";
 import { PasswordLengthError } from "../errors/password-length-error";
 import { UserAlreadyExistsError } from "../errors/user-already-exists-error";
 import { UsernameLengthError } from "../errors/username-length-error";

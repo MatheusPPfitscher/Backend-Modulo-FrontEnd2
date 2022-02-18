@@ -18,4 +18,10 @@ export class DatabaseConnection {
             this._connection = await createConnection();
         }
     }
+
+    static async closeConnection() {
+        if (this._connection) {
+            await this._connection.close();
+        }
+    }
 }

@@ -36,4 +36,8 @@ export class CacheRepository implements ICacheRepository {
             throw new Error("Set error");
         }
     }
+
+    async clear() {
+        await this.redis.flushall();
+    }
 }

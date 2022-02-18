@@ -5,7 +5,7 @@ import { UserNotFoundError } from "../errors/user-not-found-error";
 import { INote } from "../model/note";
 
 export interface IViewNoteParams {
-    userId: number;
+    userid: number;
     noteUid?: string;
 }
 export class ViewNoteUseCase implements IUseCase {
@@ -21,14 +21,13 @@ export class ViewNoteUseCase implements IUseCase {
                 return [noteCached];
             }
         }
-        let allCachedNotesFromUser = await this.cacheRepository.retrieve(`user:${data.userId}:notes`);
+        const allCachedNotesFromUser = await this.cacheRepository.retrieve(`user:${data.userid}:notes`);
         if (allCachedNotesFromUser) {
             if (!this.cacheRepository.needRefreshing()) {
                 return allCachedNotesFromUser;
             }
         }
-
-        const user = await this.userRepository.retrieveUserById(data.userId);
+        const user = await this.userRepository.retrieveUserById(data.userid);
         if (user !== undefined) {
             let resultingNotes: INote[] = [];
             if (data.noteUid) {
@@ -42,7 +41,7 @@ export class ViewNoteUseCase implements IUseCase {
                     resultingNotes.sort((a, b) => a.created_at!.getTime() - b.created_at!.getTime());
                 }
             }
-            await this.cacheRepository.save(`user:${data.userId}:notes`, resultingNotes);
+            await this.cacheRepository.save(`user:${data.userid}:notes`, resultingNotes);
             this.cacheRepository.setRefreshing(false);
             return resultingNotes;
         } else throw new UserNotFoundError();

@@ -16,13 +16,13 @@ const makeSut = () => {
 };
 
 describe("User feature", () => {
-    describe("Sign Up Usecase tests", () => {
+    describe("Sign Up Usecase Unity tests", () => {
 
         beforeEach(() => {
             jest.resetAllMocks();
         });
 
-        it("Should throw UsernameLengthError if the Username length is exceeded", () => {
+        test("When provided with username, should throw UsernameLengthError if the Username length is exceeded", () => {
             const testData: ISignUpParams = {
                 username: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                 password: ""
@@ -33,7 +33,7 @@ describe("User feature", () => {
             expect(sut.run(testData)).rejects.toThrowError(UsernameLengthError);
         });
 
-        it("Should throw PasswordLengthError if the password length is exceeded", () => {
+        test("When provided username and password, should throw PasswordLengthError if the password length is exceeded", () => {
             const testData: ISignUpParams = {
                 username: "teste",
                 password: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -43,7 +43,7 @@ describe("User feature", () => {
             expect(sut.run(testData)).rejects.toThrowError(PasswordLengthError);
         });
 
-        it(`When provided with a valid IUser object, Should throw UserAlreadyExistsError 
+        test(`When provided with a valid IUser object, Should throw UserAlreadyExistsError 
         if the UserRepository returns an object`, async () => {
             const testData: ISignUpParams = {
                 username: "teste",
@@ -65,7 +65,7 @@ describe("User feature", () => {
                 .toThrowError(UserAlreadyExistsError);
         });
 
-        it("Should return an IUser object when provided with a valid IUser object if username is available", async () => {
+        test("Should return an IUser object when provided with a valid IUser object if username is available", async () => {
             const testData: ISignUpParams = {
                 username: "teste",
                 password: "teste"

@@ -10,12 +10,12 @@ export class ViewNoteController implements Controller {
     async execute(req: Request, res: Response): Promise<any> {
         try {
             const useCaseData: IViewNoteParams = {
-                userId: res.locals.userId as number,
+                userid: res.locals.userid as number,
                 noteUid: req.params.uid
             };
 
-            if (!useCaseData.userId) {
-                throw new MissingFieldError("userId");
+            if (!useCaseData.userid) {
+                throw new MissingFieldError("userid");
             }
 
             const result = await this.viewNoteUseCase.run(useCaseData);
