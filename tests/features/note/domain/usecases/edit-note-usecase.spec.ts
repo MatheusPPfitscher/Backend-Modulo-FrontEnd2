@@ -17,7 +17,7 @@ const makeSut = () => {
 };
 
 describe("Note feature", () => {
-    describe("Edit Note Usecase Unity tests", () => {
+    describe("Edit Note Usecase Unit tests", () => {
 
         beforeEach(() => {
             jest.resetAllMocks();

@@ -19,7 +19,7 @@ const makeSut = () => {
 };
 
 describe("Auth feature", () => {
-    describe("Login Usecase Unity tests", () => {
+    describe("Login Usecase Unit tests", () => {
 
         beforeEach(() => {
             jest.resetAllMocks();

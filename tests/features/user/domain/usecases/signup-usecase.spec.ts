@@ -16,7 +16,7 @@ const makeSut = () => {
 };
 
 describe("User feature", () => {
-    describe("Sign Up Usecase Unity tests", () => {
+    describe("Sign Up Usecase Unit tests", () => {
 
         beforeEach(() => {
             jest.resetAllMocks();

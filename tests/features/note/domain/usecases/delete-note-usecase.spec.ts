@@ -19,7 +19,7 @@ const makeSut = () => {
 };
 
 describe("Note feature", () => {
-    describe("Delete Note Usecase Unity tests", () => {
+    describe("Delete Note Usecase Unit tests", () => {
         it("Should call noteRepository.removeNote with testData and return result from noteRepository", async () => {
             const testData: IDeleteNoteParams = {
                 uid: "test-uid"

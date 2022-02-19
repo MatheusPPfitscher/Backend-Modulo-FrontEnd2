@@ -3,10 +3,10 @@ import { RedisConnection } from "../../src/core/infra/database/connections/redis
 
 export async function startDatabases() {
     await DatabaseConnection.initConnection();
-    RedisConnection.initConnection();
+    await RedisConnection.initConnection();
 }
 
 export async function stopDatabases() {
     await DatabaseConnection.closeConnection();
-    RedisConnection.closeConnection();
+    await RedisConnection.closeConnection();
 }

@@ -14,14 +14,16 @@ export const successResponse = (res: Response, msg: string, data?: any) => {
 export const failureResponse = (res: Response, error: any) => {
     if (error instanceof DomainError || error instanceof ControllerError) {
         const responseBody: IResponseBody = {
-            msg: error.message
+            msg: error.name,
+            data: error.message
         };
         return res.status(error.code).send(responseBody);
     }
 
     if (error instanceof Error) {
         const responseBody: IResponseBody = {
-            msg: error.message
+            msg: error.name,
+            data: error.message
         };
         return res.status(500).send(responseBody);
     }

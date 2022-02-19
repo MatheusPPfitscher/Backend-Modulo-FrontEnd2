@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { failureResponse } from "../../../../core/presentation/helpers/http-handler";
+import { ExpiredTokenError } from "../../domain/errors/expired-token-error";
 
 dotenv.config();
 const SECRET = process.env.TOKEN_SECRET as string;
@@ -18,8 +20,6 @@ export const validateToken = function (req: Request, res: Response, next: NextFu
         next();
     }
     catch {
-        return res.status(400).send({
-            msg: "ExpiredToken"
-        });
+        return failureResponse(res, new ExpiredTokenError());
     }
 };
