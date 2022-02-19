@@ -23,7 +23,7 @@ describe("Note feature", () => {
             jest.resetAllMocks();
         });
 
-        it("Should call noteRepository.editNote with testData and return result from noteRepository", async () => {
+        test("Should call noteRepository.editNote with testData and return result from noteRepository", async () => {
             const testData: IEditNoteParams = {
                 uid: "test-uid",
                 title: "Something",
@@ -38,7 +38,7 @@ describe("Note feature", () => {
             expect(result).toMatchObject(testData);
         });
 
-        it("Should call cacheRepository.save and .setRefreshing(true) after noteRepository.editNote", async () => {
+        test("Should call cacheRepository.save and .setRefreshing(true) after noteRepository.editNote", async () => {
             const testData: IEditNoteParams = {
                 uid: "test-uid",
                 title: "Something",

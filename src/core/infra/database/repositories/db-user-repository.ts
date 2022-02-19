@@ -33,8 +33,4 @@ export class UserRepository implements IUserRepository {
             userid: userEntity.userid
         };
     }
-
-    async clear() {
-        await this.repository.clear();
-    }
 }

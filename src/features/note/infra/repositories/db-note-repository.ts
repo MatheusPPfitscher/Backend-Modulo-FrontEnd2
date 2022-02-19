@@ -44,8 +44,4 @@ export class NoteRepository implements INoteRepository {
         const result = await this.repository.delete(noteUid);
         return { affected: result.affected };
     }
-
-    async clear() {
-        await this.repository.clear();
-    }
 }
