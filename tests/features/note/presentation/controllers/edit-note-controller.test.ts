@@ -3,12 +3,11 @@ import { configureExpressApp } from "../../../../../src/core/presentation/server
 import { clearDatabases } from "../../../../helpers/clean-databases-for-testing";
 import request from "supertest";
 import { signUpTestUser } from "../../../../helpers/signup-user-for-testing";
-import { ICreateNoteParams } from "../../../../../src/features/note/domain/usecases/create-note-usecase";
 import { generateTestToken } from "../../../../helpers/token-generation-for-testing";
-import { IUser } from "../../../../../src/features/user/domain/model/user";
+import { IEditNoteParams } from "../../../../../src/features/note/domain/usecases/edit-note-usecase";
+import { createNoteTester } from "../../../../helpers/create-note-for-testing";
 
-
-describe("Create Note Controller Integration tests", () => {
+describe("Edit Note Controller Integration tests", () => {
     let app: Express.Application | undefined;
 
     beforeAll(async () => {
@@ -27,8 +26,9 @@ describe("Create Note Controller Integration tests", () => {
     });
 
     test("If request is missing auth header, should return error.msg: ExpiredTokenError", async () => {
+        const fakeUid = "UID-QUE-NAO-EXISTE";
         await request(app)
-            .post("/note")
+            .put(`/note/${fakeUid}`)
             .send({})
             .expect(401)
             .expect((response) => {
@@ -36,18 +36,18 @@ describe("Create Note Controller Integration tests", () => {
             });
     });
 
-
-    test("if request is missing userid, should return error.msg: MissingFieldError", async () => {
+    test("If request is missing note title, should return error.msg: MissingFieldError", async () => {
         const testUser = await signUpTestUser();
         const authTokenForUser = generateTestToken(testUser);
 
-        const testRequestBody: Partial<ICreateNoteParams> = {
-            title: "titulo",
+        const testNote = await createNoteTester(testUser);
+
+        const testRequestBody: Partial<IEditNoteParams> = {
             details: "detalhes..."
         };
 
         await request(app)
-            .post("/note")
+            .put(`/note/${testNote!.uid}`)
             .auth(authTokenForUser, { type: "bearer" })
             .send(testRequestBody)
             .expect(400)
@@ -56,43 +56,43 @@ describe("Create Note Controller Integration tests", () => {
             });
     });
 
-    test.only("if request is missing title, should return error.msg: MissingFieldError", async () => {
-        const testUser: IUser = await signUpTestUser();
+    test("If request uid do not exist on database, should return error.msg: NoteNotFound", async () => {
+        const testUser = await signUpTestUser();
         const authTokenForUser = generateTestToken(testUser);
 
-        const testRequestBody: Partial<ICreateNoteParams> = {
-            userid: testUser.userid,
-            details: "São meros detalhes...",
+        const testRequestBody: IEditNoteParams = {
+            uid: "Non-Existe-Uid",
+            title: "Aquela note",
+            details: "que não existe"
         };
 
         await request(app)
-            .post("/note")
+            .put(`/note/${testRequestBody!.uid}`)
             .auth(authTokenForUser, { type: "bearer" })
             .send(testRequestBody)
-            .expect(400)
+            .expect(404)
             .expect((response) => {
-                expect(response.body.msg).toEqual("MissingFieldError");
+                expect(response.body.msg).toEqual("NoteNotFoundError");
             });
     });
 
-    test("If request has all parameters should return msg:NoteCreated", async () => {
-        const testUser: IUser = await signUpTestUser();
+    test("If request is valid, should return msg:NoteEdited", async () => {
+        const testUser = await signUpTestUser();
         const authTokenForUser = generateTestToken(testUser);
+        const testNote = await createNoteTester(testUser);
 
-        const testRequestBody: Partial<ICreateNoteParams> = {
-            userid: testUser.userid,
-            title: "Agora vai",
-            details: "escrever em homologação",
+        const testRequestBody: Partial<IEditNoteParams> = {
+            title: "Aqui temos",
+            details: "mais detalhes..."
         };
 
         await request(app)
-            .post("/note")
+            .put(`/note/${testNote!.uid}`)
             .auth(authTokenForUser, { type: "bearer" })
             .send(testRequestBody)
             .expect(200)
             .expect((response) => {
-                expect(response.body.msg).toEqual("NoteCreated");
+                expect(response.body.msg).toEqual("NoteEdited");
             });
     });
-
 });

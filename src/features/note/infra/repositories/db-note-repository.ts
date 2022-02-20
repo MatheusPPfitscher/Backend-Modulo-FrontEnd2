@@ -2,6 +2,7 @@ import { Repository } from "typeorm";
 import { DatabaseConnection } from "../../../../core/infra/database/connections/connection";
 import { Note } from "../../../../core/infra/database/entities/Note";
 import { User } from "../../../../core/infra/database/entities/User";
+import { IUser } from "../../../user/domain/model/user";
 import { NoteNotFoundError } from "../../domain/errors/note-not-found-error";
 import { INote } from "../../domain/model/note";
 import { INoteRepository } from "../../domain/model/note-repository";

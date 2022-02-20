@@ -14,10 +14,6 @@ export class ViewNoteController implements Controller {
                 noteUid: req.params.uid
             };
 
-            if (!useCaseData.userid) {
-                throw new MissingFieldError("userid");
-            }
-
             const result = await this.viewNoteUseCase.run(useCaseData);
             successResponse(res, "NoteView", result);
         }

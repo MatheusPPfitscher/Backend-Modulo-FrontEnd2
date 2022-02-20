@@ -6,9 +6,10 @@ import { signUpTestUser } from "../../../../helpers/signup-user-for-testing";
 import { ICreateNoteParams } from "../../../../../src/features/note/domain/usecases/create-note-usecase";
 import { generateTestToken } from "../../../../helpers/token-generation-for-testing";
 import { IUser } from "../../../../../src/features/user/domain/model/user";
+import { createNoteTester } from "../../../../helpers/create-note-for-testing";
 
 
-describe("Create Note Controller Integration tests", () => {
+describe("View Note Controller Integration tests", () => {
     let app: Express.Application | undefined;
 
     beforeAll(async () => {
@@ -28,7 +29,7 @@ describe("Create Note Controller Integration tests", () => {
 
     test("If request is missing auth header, should return error.msg: ExpiredTokenError", async () => {
         await request(app)
-            .post("/note")
+            .get(`/note`)
             .send({})
             .expect(401)
             .expect((response) => {
@@ -36,63 +37,35 @@ describe("Create Note Controller Integration tests", () => {
             });
     });
 
-
-    test("if request is missing userid, should return error.msg: MissingFieldError", async () => {
+    test("If not provided with a note uid, should return msg:NoteView and all notes from user", async () => {
         const testUser = await signUpTestUser();
         const authTokenForUser = generateTestToken(testUser);
-
-        const testRequestBody: Partial<ICreateNoteParams> = {
-            title: "titulo",
-            details: "detalhes..."
-        };
+        const fakeNotes = [await createNoteTester(testUser), await createNoteTester(testUser)];
 
         await request(app)
-            .post("/note")
+            .get("/note")
             .auth(authTokenForUser, { type: "bearer" })
-            .send(testRequestBody)
-            .expect(400)
-            .expect((response) => {
-                expect(response.body.msg).toEqual("MissingFieldError");
-            });
-    });
-
-    test.only("if request is missing title, should return error.msg: MissingFieldError", async () => {
-        const testUser: IUser = await signUpTestUser();
-        const authTokenForUser = generateTestToken(testUser);
-
-        const testRequestBody: Partial<ICreateNoteParams> = {
-            userid: testUser.userid,
-            details: "São meros detalhes...",
-        };
-
-        await request(app)
-            .post("/note")
-            .auth(authTokenForUser, { type: "bearer" })
-            .send(testRequestBody)
-            .expect(400)
-            .expect((response) => {
-                expect(response.body.msg).toEqual("MissingFieldError");
-            });
-    });
-
-    test("If request has all parameters should return msg:NoteCreated", async () => {
-        const testUser: IUser = await signUpTestUser();
-        const authTokenForUser = generateTestToken(testUser);
-
-        const testRequestBody: Partial<ICreateNoteParams> = {
-            userid: testUser.userid,
-            title: "Agora vai",
-            details: "escrever em homologação",
-        };
-
-        await request(app)
-            .post("/note")
-            .auth(authTokenForUser, { type: "bearer" })
-            .send(testRequestBody)
+            .send()
             .expect(200)
             .expect((response) => {
-                expect(response.body.msg).toEqual("NoteCreated");
-            });
+                expect(response.body.msg).toEqual("NoteView");
+                expect(response.body.data[1].uid).toEqual(fakeNotes[1]!.uid);
+            });;
     });
 
+    test("If provided with a note uid, should return msg:NoteView and the note requested", async () => {
+        const testUser = await signUpTestUser();
+        const authTokenForUser = generateTestToken(testUser);
+        const fakeNotes = [await createNoteTester(testUser), await createNoteTester(testUser)];
+
+        await request(app)
+            .get(`/note/${fakeNotes[1]!.uid}`)
+            .auth(authTokenForUser, { type: "bearer" })
+            .send()
+            .expect(200)
+            .expect((response) => {
+                expect(response.body.msg).toEqual("NoteView");
+                expect(response.body.data[0].uid).toEqual(fakeNotes[1]!.uid);
+            });;
+    });
 });

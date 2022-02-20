@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express";
 import { UserRepository } from "../../../../core/infra/database/repositories/db-user-repository";
 import { CacheRepository } from "../../../../core/infra/database/repositories/redis-cache-repository";
+import { logRequest } from "../../../../core/presentation/middlewares/log-requests-middleware";
 import { CreateNoteUseCase } from "../../domain/usecases/create-note-usecase";
 import { DeleteNoteUseCase } from "../../domain/usecases/delete-note-usecase";
 import { EditNoteUseCase } from "../../domain/usecases/edit-note-usecase";
@@ -11,6 +12,8 @@ import { DeleteNoteController } from "../controllers/delete-note-controller";
 import { EditNoteController } from "../controllers/edit-note-controller";
 import { ViewNoteController } from "../controllers/view-note-controller";
 import { validateToken } from "../middlewares/validate-token-middleware";
+
+const appliedMiddlewares = [logRequest, validateToken];
 
 export class NoteRouter {
     static getRoutes() {
@@ -33,13 +36,13 @@ export class NoteRouter {
         const deleteNoteController = new DeleteNoteController(deleteNoteUseCase);
 
 
-        routes.post("/", validateToken,
+        routes.post("/", appliedMiddlewares,
             (req: Request, res: Response) => createNoteController.execute(req, res));
-        routes.get("/:uid?", validateToken,
+        routes.get("/:uid?", appliedMiddlewares,
             (req: Request, res: Response) => viewNoteController.execute(req, res));
-        routes.put("/:uid", validateToken,
+        routes.put("/:uid", appliedMiddlewares,
             (req: Request, res: Response) => editNoteController.execute(req, res));
-        routes.delete("/:uid", validateToken,
+        routes.delete("/:uid", appliedMiddlewares,
             (req: Request, res: Response) => deleteNoteController.execute(req, res));
 
         return routes;

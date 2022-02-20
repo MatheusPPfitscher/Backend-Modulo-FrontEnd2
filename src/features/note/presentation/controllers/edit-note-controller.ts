@@ -17,10 +17,6 @@ export class EditNoteController implements Controller {
                 details: req.body.details
             };
 
-            if (!useCaseData.uid) {
-                throw new MissingFieldError("uid");
-            }
-
             if (!useCaseData.title) {
                 throw new MissingFieldError("title");
             }

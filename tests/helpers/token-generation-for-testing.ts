@@ -7,7 +7,7 @@ dotenv.config();
 const SECRET = process.env.TOKEN_SECRET as string;
 const TOKEN_EXPIRATION_TIME = process.env.TOKEN_EXPIRATION_TIME as string;
 
-export function generateTokenFromUser(user: IUser): string {
+export function generateTestToken(user: IUser): string {
     const token = jwt.sign(
         {
             userid: user.userid,

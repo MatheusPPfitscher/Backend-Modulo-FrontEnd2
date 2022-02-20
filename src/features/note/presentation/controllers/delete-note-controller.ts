@@ -15,10 +15,6 @@ export class DeleteNoteController implements Controller {
                 uid: req.params.uid
             };
 
-            if (!useCaseData.uid) {
-                throw new MissingFieldError("uid");
-            }
-
             const result = await this.deleteNoteUseCase.run(useCaseData);
             successResponse(res, "NoteDeleted", result);
         }

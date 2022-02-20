@@ -5,7 +5,7 @@ import { UserRouter } from '../../features/user/presentation/routes/user-routes'
 import { logRequest } from './middlewares/log-requests-middleware';
 
 export const makeRoutes = (app: express.Application) => {
-    app.use('/user', logRequest, UserRouter.getRoutes());
-    app.use('/auth', logRequest, AuthRouter.getRoutes());
-    app.use('/note', logRequest, NoteRouter.getRoutes());
+    app.use('/user', UserRouter.getRoutes());
+    app.use('/auth', AuthRouter.getRoutes());
+    app.use('/note', NoteRouter.getRoutes());
 };

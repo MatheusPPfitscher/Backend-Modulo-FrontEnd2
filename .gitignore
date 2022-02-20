@@ -4,3 +4,4 @@ dist/
 coverage/
 *.sqlite
 dbtest.sqlite
+dbtest.sqlite
