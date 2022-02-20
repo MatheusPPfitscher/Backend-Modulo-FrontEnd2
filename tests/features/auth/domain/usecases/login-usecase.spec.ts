@@ -25,7 +25,7 @@ describe("Auth feature", () => {
             jest.resetAllMocks();
         });
 
-        it("Should throw InvalidCredentialsError when the username provided could not be found by the Repository", () => {
+        test("Should throw InvalidCredentialsError when the username provided could not be found by the Repository", () => {
             const testData: ILoginParams = {
                 username: "teste",
                 password: "teste"
@@ -35,7 +35,7 @@ describe("Auth feature", () => {
             expect(sut.run(testData)).rejects.toThrowError(InvalidCredentialsError);
         });
 
-        it("Should throw InvalidCredentialsError when the password provided do not match for the user found by the Repository", () => {
+        test("Should throw InvalidCredentialsError when the password provided do not match for the user found by the Repository", () => {
             const testData: ILoginParams = {
                 username: "teste",
                 password: "OutroTeste"
@@ -54,7 +54,7 @@ describe("Auth feature", () => {
             expect(sut.run(testData)).rejects.toThrowError(InvalidCredentialsError);
         });
 
-        it("Should call the generateToken function and return a token when username and password provided match the UserRepository output", async () => {
+        test("Should call the generateToken function and return a token when username and password provided match the UserRepository output", async () => {
             const testData: ILoginParams = {
                 username: "teste",
                 password: "OutroTeste"

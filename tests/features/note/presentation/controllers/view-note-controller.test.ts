@@ -53,7 +53,7 @@ describe("View Note Controller Integration tests", () => {
             });;
     });
 
-    test("If provided with a note uid, should return msg:NoteView and the note requested", async () => {
+    test("If provided with a valid note uid, should return msg:NoteView and the note requested", async () => {
         const testUser = await signUpTestUser();
         const authTokenForUser = generateTestToken(testUser);
         const fakeNotes = [await createNoteTester(testUser), await createNoteTester(testUser)];

@@ -29,7 +29,7 @@ describe("Note feature", () => {
             jest.resetAllMocks();
         });
 
-        it("Should throw UserNotFoundError if userid provided is not found by the UserRepository", () => {
+        test("Should throw UserNotFoundError if userid provided is not found by the UserRepository", () => {
             const testData: ICreateNoteParams = {
                 userid: 0,
                 title: "Hmmm",
@@ -41,7 +41,7 @@ describe("Note feature", () => {
             expect(sut.run(testData)).rejects.toThrowError(UserNotFoundError);
         });
 
-        it(`Should call noteRepository.create with user and return result from noteRepository.createNote 
+        test(`Should call noteRepository.create with user and return result from noteRepository.createNote 
         after userRepository returns a valid user`, async () => {
             const testData: ICreateNoteParams = {
                 userid: 0,
@@ -73,7 +73,7 @@ describe("Note feature", () => {
             expect(result).toMatchObject(fakeNote);
         });
 
-        it(`Should call cacheRepository.save and .setRefreshing(true) after return fron noteRepository.createNote`, async () => {
+        test(`Should call cacheRepository.save and .setRefreshing(true) after return fron noteRepository.createNote`, async () => {
             const testData: ICreateNoteParams = {
                 userid: 0,
                 title: "Hmmm",

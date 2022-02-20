@@ -20,7 +20,7 @@ const makeSut = () => {
 
 describe("Note feature", () => {
     describe("Delete Note Usecase Unit tests", () => {
-        it("Should call noteRepository.removeNote with testData and return result from noteRepository", async () => {
+        test("Should call noteRepository.removeNote with testData and return result from noteRepository", async () => {
             const testData: IDeleteNoteParams = {
                 uid: "test-uid"
             };
@@ -33,7 +33,7 @@ describe("Note feature", () => {
             expect(result).toMatchObject({ affected: 1 });
         });
 
-        it("Should call cacheRepository.save and .setRefreshing(true) after noteRepository.editNote", async () => {
+        test("Should call cacheRepository.save and .setRefreshing(true) after noteRepository.editNote", async () => {
             const testData: IDeleteNoteParams = {
                 uid: "test-uid"
             };

@@ -81,12 +81,6 @@ describe("Note feature", () => {
                 details: "grande teste"
             };
 
-            // const fakeUser: IUser = {
-            //     ...testData,
-            //     username: "teste",
-            //     notes: [fakeNote]
-            // };
-
             const fakeCacheResult = [fakeNote, fakeNote, fakeNote];
 
             CacheRepositoryMock.prototype.retrieve.mockResolvedValue(fakeCacheResult);
