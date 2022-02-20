@@ -18,32 +18,31 @@ const makeSut = () => {
     return sut;
 };
 
-describe("Note feature", () => {
-    describe("Delete Note Usecase Unit tests", () => {
-        test("Should call noteRepository.removeNote with testData and return result from noteRepository", async () => {
-            const testData: IDeleteNoteParams = {
-                uid: "test-uid"
-            };
 
-            NoteRepositoryMock.prototype.removeNote.mockResolvedValue({ affected: 1 });
-            const sut = makeSut();
+describe("Delete Note Usecase Unit tests", () => {
+    test("Should call noteRepository.removeNote with testData and return result from noteRepository", async () => {
+        const testData: IDeleteNoteParams = {
+            uid: "test-uid"
+        };
 
-            const result = await sut.run(testData);
+        NoteRepositoryMock.prototype.removeNote.mockResolvedValue({ affected: 1 });
+        const sut = makeSut();
 
-            expect(result).toMatchObject({ affected: 1 });
-        });
+        const result = await sut.run(testData);
 
-        test("Should call cacheRepository.save and .setRefreshing(true) after noteRepository.editNote", async () => {
-            const testData: IDeleteNoteParams = {
-                uid: "test-uid"
-            };
+        expect(result).toMatchObject({ affected: 1 });
+    });
 
-            const sut = makeSut();
+    test("Should call cacheRepository.save and .setRefreshing(true) after noteRepository.editNote", async () => {
+        const testData: IDeleteNoteParams = {
+            uid: "test-uid"
+        };
 
-            await sut.run(testData);
+        const sut = makeSut();
 
-            expect(CacheRepositoryMock.prototype.delete).toBeCalled();
-            expect(CacheRepositoryMock.prototype.setRefreshing).toBeCalledWith(true);
-        });
+        await sut.run(testData);
+
+        expect(CacheRepositoryMock.prototype.delete).toBeCalled();
+        expect(CacheRepositoryMock.prototype.setRefreshing).toBeCalledWith(true);
     });
 });

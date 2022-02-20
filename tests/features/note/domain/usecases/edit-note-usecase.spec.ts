@@ -16,41 +16,40 @@ const makeSut = () => {
     return sut;
 };
 
-describe("Note feature", () => {
-    describe("Edit Note Usecase Unit tests", () => {
 
-        beforeEach(() => {
-            jest.resetAllMocks();
-        });
+describe("Edit Note Usecase Unit tests", () => {
 
-        test("Should call noteRepository.editNote with testData and return result from noteRepository", async () => {
-            const testData: IEditNoteParams = {
-                uid: "test-uid",
-                title: "Something",
-                details: "something something"
-            };
+    beforeEach(() => {
+        jest.resetAllMocks();
+    });
 
-            NoteRepositoryMock.prototype.editNote.mockResolvedValue(testData);
-            const sut = makeSut();
+    test("Should call noteRepository.editNote with testData and return result from noteRepository", async () => {
+        const testData: IEditNoteParams = {
+            uid: "test-uid",
+            title: "Something",
+            details: "something something"
+        };
 
-            const result = await sut.run(testData);
+        NoteRepositoryMock.prototype.editNote.mockResolvedValue(testData);
+        const sut = makeSut();
 
-            expect(result).toMatchObject(testData);
-        });
+        const result = await sut.run(testData);
 
-        test("Should call cacheRepository.save and .setRefreshing(true) after noteRepository.editNote", async () => {
-            const testData: IEditNoteParams = {
-                uid: "test-uid",
-                title: "Something",
-                details: "something something"
-            };
+        expect(result).toMatchObject(testData);
+    });
 
-            const sut = makeSut();
+    test("Should call cacheRepository.save and .setRefreshing(true) after noteRepository.editNote", async () => {
+        const testData: IEditNoteParams = {
+            uid: "test-uid",
+            title: "Something",
+            details: "something something"
+        };
 
-            await sut.run(testData);
+        const sut = makeSut();
 
-            expect(CacheRepositoryMock.prototype.save).toBeCalled();
-            expect(CacheRepositoryMock.prototype.setRefreshing).toBeCalledWith(true);
-        });
+        await sut.run(testData);
+
+        expect(CacheRepositoryMock.prototype.save).toBeCalled();
+        expect(CacheRepositoryMock.prototype.setRefreshing).toBeCalledWith(true);
     });
 });

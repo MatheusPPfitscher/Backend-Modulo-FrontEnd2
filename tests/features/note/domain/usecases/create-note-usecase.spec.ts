@@ -22,87 +22,86 @@ const makeSut = () => {
     return sut;
 };
 
-describe("Note feature", () => {
-    describe("Create Note Usecase Unit tests", () => {
 
-        beforeEach(() => {
-            jest.resetAllMocks();
-        });
+describe("Create Note Usecase Unit tests", () => {
 
-        test("Should throw UserNotFoundError if userid provided is not found by the UserRepository", () => {
-            const testData: ICreateNoteParams = {
-                userid: 0,
-                title: "Hmmm",
-                details: "Ora Ora Ora"
-            };
+    beforeEach(() => {
+        jest.resetAllMocks();
+    });
 
-            const sut = makeSut();
+    test("Should throw UserNotFoundError if userid provided is not found by the UserRepository", () => {
+        const testData: ICreateNoteParams = {
+            userid: 0,
+            title: "Hmmm",
+            details: "Ora Ora Ora"
+        };
 
-            expect(sut.run(testData)).rejects.toThrowError(UserNotFoundError);
-        });
+        const sut = makeSut();
 
-        test(`Should call noteRepository.create with user and return result from noteRepository.createNote 
+        expect(sut.run(testData)).rejects.toThrowError(UserNotFoundError);
+    });
+
+    test(`Should call noteRepository.create with user and return result from noteRepository.createNote 
         after userRepository returns a valid user`, async () => {
-            const testData: ICreateNoteParams = {
-                userid: 0,
-                title: "Hmmm",
-                details: "Ora Ora Ora"
-            };
+        const testData: ICreateNoteParams = {
+            userid: 0,
+            title: "Hmmm",
+            details: "Ora Ora Ora"
+        };
 
-            const fakeUser = {
-                userid: 0,
-                username: "teste",
-                notes: []
-            };
+        const fakeUser = {
+            userid: 0,
+            username: "teste",
+            notes: []
+        };
 
-            const fakeNote = {
-                uid: "something",
-                title: testData.title,
-                details: testData.details
-            };
+        const fakeNote = {
+            uid: "something",
+            title: testData.title,
+            details: testData.details
+        };
 
-            UserRepositoryMock.prototype.retrieveUserById.mockResolvedValue(fakeUser);
+        UserRepositoryMock.prototype.retrieveUserById.mockResolvedValue(fakeUser);
 
-            NoteRepositoryMock.prototype.createNote.mockResolvedValue(fakeNote);
+        NoteRepositoryMock.prototype.createNote.mockResolvedValue(fakeNote);
 
-            const sut = makeSut();
+        const sut = makeSut();
 
-            const result = await sut.run(testData);
+        const result = await sut.run(testData);
 
-            expect.assertions(1);
-            expect(result).toMatchObject(fakeNote);
-        });
+        expect.assertions(1);
+        expect(result).toMatchObject(fakeNote);
+    });
 
-        test(`Should call cacheRepository.save and .setRefreshing(true) after return fron noteRepository.createNote`, async () => {
-            const testData: ICreateNoteParams = {
-                userid: 0,
-                title: "Hmmm",
-                details: "Ora Ora Ora"
-            };
+    test(`Should call cacheRepository.save and .setRefreshing(true) after return fron noteRepository.createNote`, async () => {
+        const testData: ICreateNoteParams = {
+            userid: 0,
+            title: "Hmmm",
+            details: "Ora Ora Ora"
+        };
 
-            const fakeUser = {
-                userid: 0,
-                username: "teste",
-                notes: []
-            };
+        const fakeUser = {
+            userid: 0,
+            username: "teste",
+            notes: []
+        };
 
-            const fakeNote = {
-                uid: "something",
-                title: testData.title,
-                details: testData.details
-            };
+        const fakeNote = {
+            uid: "something",
+            title: testData.title,
+            details: testData.details
+        };
 
-            UserRepositoryMock.prototype.retrieveUserById.mockResolvedValue(fakeUser);
+        UserRepositoryMock.prototype.retrieveUserById.mockResolvedValue(fakeUser);
 
-            NoteRepositoryMock.prototype.createNote.mockResolvedValue(fakeNote);
+        NoteRepositoryMock.prototype.createNote.mockResolvedValue(fakeNote);
 
-            const sut = makeSut();
+        const sut = makeSut();
 
-            await sut.run(testData);
+        await sut.run(testData);
 
-            expect.assertions(2);
-            expect(CacheRepositoryMock.prototype.save).toBeCalled();
-            expect(CacheRepositoryMock.prototype.setRefreshing).toBeCalledWith(true);
-        });
+        expect.assertions(2);
+        expect(CacheRepositoryMock.prototype.save).toBeCalled();
+        expect(CacheRepositoryMock.prototype.setRefreshing).toBeCalledWith(true);
     });
 });

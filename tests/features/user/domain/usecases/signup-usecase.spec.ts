@@ -15,79 +15,78 @@ const makeSut = () => {
     return sut;
 };
 
-describe("User feature", () => {
-    describe("Sign Up Usecase Unit tests", () => {
 
-        beforeEach(() => {
-            jest.resetAllMocks();
-        });
+describe("Sign Up Usecase Unit tests", () => {
 
-        test("When provided with username, should throw UsernameLengthError if the Username length is exceeded", () => {
-            const testData: ISignUpParams = {
-                username: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                password: ""
-            };
+    beforeEach(() => {
+        jest.resetAllMocks();
+    });
 
-            const sut = makeSut();
+    test("When provided with username, should throw UsernameLengthError if the Username length is exceeded", () => {
+        const testData: ISignUpParams = {
+            username: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            password: ""
+        };
 
-            expect(sut.run(testData)).rejects.toThrowError(UsernameLengthError);
-        });
+        const sut = makeSut();
 
-        test("When provided username and password, should throw PasswordLengthError if the password length is exceeded", () => {
-            const testData: ISignUpParams = {
-                username: "teste",
-                password: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            };
+        expect(sut.run(testData)).rejects.toThrowError(UsernameLengthError);
+    });
 
-            const sut = makeSut();
-            expect(sut.run(testData)).rejects.toThrowError(PasswordLengthError);
-        });
+    test("When provided username and password, should throw PasswordLengthError if the password length is exceeded", () => {
+        const testData: ISignUpParams = {
+            username: "teste",
+            password: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        };
 
-        test(`When provided with a valid IUser object, Should throw UserAlreadyExistsError 
+        const sut = makeSut();
+        expect(sut.run(testData)).rejects.toThrowError(PasswordLengthError);
+    });
+
+    test(`When provided with a valid IUser object, Should throw UserAlreadyExistsError 
         if the UserRepository returns an object`, async () => {
-            const testData: ISignUpParams = {
-                username: "teste",
-                password: "teste"
-            };
+        const testData: ISignUpParams = {
+            username: "teste",
+            password: "teste"
+        };
 
-            UserRepositoryMock.prototype.retrieveUserByName.mockResolvedValue({
-                ...testData,
-                userid: 0,
-                notes: []
-            });
-
-            const sut = makeSut();
-
-            expect.assertions(1);
-
-            expect(sut.run(testData))
-                .rejects
-                .toThrowError(UserAlreadyExistsError);
+        UserRepositoryMock.prototype.retrieveUserByName.mockResolvedValue({
+            ...testData,
+            userid: 0,
+            notes: []
         });
 
-        test("Should return an IUser object when provided with a valid IUser object if username is available", async () => {
-            const testData: ISignUpParams = {
-                username: "teste",
-                password: "teste"
-            };
+        const sut = makeSut();
 
-            UserRepositoryMock.prototype.createUser.mockResolvedValue({
-                username: testData.username,
-                userid: 0
-            });
+        expect.assertions(1);
 
-            const sut = makeSut();
+        expect(sut.run(testData))
+            .rejects
+            .toThrowError(UserAlreadyExistsError);
+    });
 
-            expect.assertions(1);
+    test("Should return an IUser object when provided with a valid IUser object if username is available", async () => {
+        const testData: ISignUpParams = {
+            username: "teste",
+            password: "teste"
+        };
 
-            const result = await sut.run(testData);
-
-            expect(result)
-                .toEqual(
-                    expect.objectContaining({
-                        username: testData.username,
-                        userid: 0
-                    }));
+        UserRepositoryMock.prototype.createUser.mockResolvedValue({
+            username: testData.username,
+            userid: 0
         });
+
+        const sut = makeSut();
+
+        expect.assertions(1);
+
+        const result = await sut.run(testData);
+
+        expect(result)
+            .toEqual(
+                expect.objectContaining({
+                    username: testData.username,
+                    userid: 0
+                }));
     });
 });

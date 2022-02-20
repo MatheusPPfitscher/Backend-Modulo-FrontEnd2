@@ -10,7 +10,7 @@
     "test:setup": "rimraf ./dbtest.sqlite && rimraf ./tests/core/infra/database/migrations && cross-env NODE_ENV=test npm run typeorm migration:generate -- -n TestsMigration && cross-env NODE_ENV=test npm run typeorm migration:run",
     "test:coverage:unit": "cross-env NODE_ENV=test jest --silent --noStackTrace --runInBand --coverage  -c ./jest.config.unit.ts",
     "test:coverage:integration": "cross-env NODE_ENV=test jest --silent --noStackTrace --runInBand --coverage -c ./jest.config.integration.ts",
-    "test:coverage:all": "cross-env NODE_ENV=test jest --silent --noStackTrace --runInBand --coverage",
+    "test:coverage:all": "cross-env NODE_ENV=test jest --noStackTrace --runInBand --coverage -c ./jest.config.all.ts",
     "test:watch": "cross-env NODE_ENV=test jest --silent --noStackTrace --runInBand --watchAll",
     "test:verbose": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "dev": "ts-node-dev --respawn --transpile-only ./src/main.ts",

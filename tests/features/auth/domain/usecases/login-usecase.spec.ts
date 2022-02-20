@@ -18,67 +18,66 @@ const makeSut = () => {
     return sut;
 };
 
-describe("Auth feature", () => {
-    describe("Login Usecase Unit tests", () => {
 
-        beforeEach(() => {
-            jest.resetAllMocks();
+describe("Login Usecase Unit tests", () => {
+
+    beforeEach(() => {
+        jest.resetAllMocks();
+    });
+
+    test("Should throw InvalidCredentialsError when the username provided could not be found by the Repository", () => {
+        const testData: ILoginParams = {
+            username: "teste",
+            password: "teste"
+        };
+        const sut = makeSut();
+        expect.assertions(1);
+        expect(sut.run(testData)).rejects.toThrowError(InvalidCredentialsError);
+    });
+
+    test("Should throw InvalidCredentialsError when the password provided do not match for the user found by the Repository", () => {
+        const testData: ILoginParams = {
+            username: "teste",
+            password: "OutroTeste"
+        };
+
+        const sut = makeSut();
+
+        UserRepositoryMock.prototype.retrieveUserByName.mockResolvedValue({
+            username: "teste",
+            password: "teste",
+            userid: 0,
+            notes: []
         });
 
-        test("Should throw InvalidCredentialsError when the username provided could not be found by the Repository", () => {
-            const testData: ILoginParams = {
-                username: "teste",
-                password: "teste"
-            };
-            const sut = makeSut();
-            expect.assertions(1);
-            expect(sut.run(testData)).rejects.toThrowError(InvalidCredentialsError);
-        });
+        expect.assertions(1);
+        expect(sut.run(testData)).rejects.toThrowError(InvalidCredentialsError);
+    });
 
-        test("Should throw InvalidCredentialsError when the password provided do not match for the user found by the Repository", () => {
-            const testData: ILoginParams = {
-                username: "teste",
-                password: "OutroTeste"
-            };
+    test("Should call the generateToken function and return a token when username and password provided match the UserRepository output", async () => {
+        const testData: ILoginParams = {
+            username: "teste",
+            password: "OutroTeste"
+        };
 
-            const sut = makeSut();
+        const stubReturn: IUser = {
+            ...testData,
+            userid: 0,
+            notes: []
+        };
 
-            UserRepositoryMock.prototype.retrieveUserByName.mockResolvedValue({
-                username: "teste",
-                password: "teste",
-                userid: 0,
-                notes: []
-            });
+        const sut = makeSut();
 
-            expect.assertions(1);
-            expect(sut.run(testData)).rejects.toThrowError(InvalidCredentialsError);
-        });
+        UserRepositoryMock.prototype.retrieveUserByName.mockResolvedValue(stubReturn);
+        generateTokenMock.mockReturnValue("Silly Token");
 
-        test("Should call the generateToken function and return a token when username and password provided match the UserRepository output", async () => {
-            const testData: ILoginParams = {
-                username: "teste",
-                password: "OutroTeste"
-            };
+        const result = await sut.run(testData);
 
-            const stubReturn: IUser = {
-                ...testData,
-                userid: 0,
-                notes: []
-            };
+        expect(result).toEqual("Silly Token");
 
-            const sut = makeSut();
-
-            UserRepositoryMock.prototype.retrieveUserByName.mockResolvedValue(stubReturn);
-            generateTokenMock.mockReturnValue("Silly Token");
-
-            const result = await sut.run(testData);
-
-            expect(result).toEqual("Silly Token");
-
-            expect(generateToken).toBeCalledWith({
-                userid: stubReturn.userid,
-                username: stubReturn.username
-            });
+        expect(generateToken).toBeCalledWith({
+            userid: stubReturn.userid,
+            username: stubReturn.username
         });
     });
 });
