@@ -5,8 +5,9 @@ import { ISignUpParams } from "../../src/features/user/domain/usecases/signup-us
 
 export const signUpTestUser = async () => {
     const userdata: ISignUpParams = {
-        username: faker.name.findName(),
-        password: faker.internet.password(10)
+        displayName: faker.name.findName(),
+        password: faker.internet.password(10),
+        email: faker.internet.email()
     };
     const userRepo = new UserRepository();
     const newUser = await userRepo.createUser(userdata);

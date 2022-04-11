@@ -11,12 +11,13 @@ export class UserController implements Controller {
     async execute(req: Request, res: Response) {
         try {
             const useCaseData: ISignUpParams = {
-                username: req.body.username,
-                password: req.body.password
+                displayName: req.body.displayName,
+                password: req.body.password,
+                email: req.body.email
             };
 
-            if (!useCaseData.username) {
-                throw new MissingFieldError("username");
+            if (!useCaseData.displayName) {
+                throw new MissingFieldError("displayName");
             }
 
             const userCreation = await this.signUpUseCase.run(useCaseData);

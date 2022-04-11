@@ -11,7 +11,7 @@ export function generateTestToken(user: IUser): string {
     const token = jwt.sign(
         {
             userid: user.userid,
-            username: user.username
+            displayName: user.displayName
         },
         SECRET,
         { expiresIn: TOKEN_EXPIRATION_TIME });

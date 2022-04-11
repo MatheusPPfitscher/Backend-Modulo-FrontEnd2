@@ -24,10 +24,11 @@ describe("Signup Controller Integration tests", () => {
         await clearDatabases();
     });
 
-    test("If request is missing or empty username, should return error.msg: MissingFieldError", async () => {
+    test("If request is missing or empty displayName, should return error.msg: MissingFieldError", async () => {
         const testRequestBody: ISignUpParams = {
-            username: "",
-            password: "teste"
+            displayName: "",
+            password: "teste",
+            email: "teste@teste"
         };
 
         await request(app)
@@ -39,12 +40,13 @@ describe("Signup Controller Integration tests", () => {
             });
     });
 
-    test("If username provided already exists, should return error.msg: UserAlreadyExistsError", async () => {
+    test("If displayName provided already exists, should return error.msg: UserAlreadyExistsError", async () => {
         const existingUser = signUpTestUser();
 
         const signupAttempt: ISignUpParams = {
-            username: (await existingUser).username,
-            password: "teste"
+            displayName: (await existingUser).displayName,
+            password: "teste",
+            email: "teste@teste"
         };
 
         await request(app)

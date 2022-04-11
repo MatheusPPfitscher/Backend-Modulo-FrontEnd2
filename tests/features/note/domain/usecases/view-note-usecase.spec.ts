@@ -117,7 +117,8 @@ describe("View Note Usecase Unit tests", () => {
 
         const fakeUser: IUser = {
             userid: 0,
-            username: "UsuarioTeste",
+            displayName: "UsuarioTeste",
+            email: "teste@teste",
             notes: fakeNotes
         };
 
@@ -155,7 +156,8 @@ describe("View Note Usecase Unit tests", () => {
 
         const fakeUser: IUser = {
             userid: 0,
-            username: "UsuarioTeste",
+            displayName: "UsuarioTeste",
+            email: "teste@teste",
             notes: fakeNotes
         };
 

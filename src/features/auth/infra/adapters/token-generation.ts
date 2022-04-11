@@ -10,7 +10,7 @@ export function generateToken(payload: IPayload): string {
     const token = jwt.sign(
         {
             userid: payload.userid,
-            username: payload.username
+            displayName: payload.displayName
         },
         SECRET,
         { expiresIn: TOKEN_EXPIRATION_TIME });

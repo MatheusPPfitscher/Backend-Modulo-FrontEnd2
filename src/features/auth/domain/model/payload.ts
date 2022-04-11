@@ -1,4 +1,4 @@
 export interface IPayload {
     userid: number;
-    username: string;
+    displayName: string;
 }

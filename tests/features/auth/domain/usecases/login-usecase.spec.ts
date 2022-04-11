@@ -25,9 +25,9 @@ describe("Login Usecase Unit tests", () => {
         jest.resetAllMocks();
     });
 
-    test("Should throw InvalidCredentialsError when the username provided could not be found by the Repository", () => {
+    test("Should throw InvalidCredentialsError when the displayName provided could not be found by the Repository", () => {
         const testData: ILoginParams = {
-            username: "teste",
+            displayName: "teste",
             password: "teste"
         };
         const sut = makeSut();
@@ -37,15 +37,16 @@ describe("Login Usecase Unit tests", () => {
 
     test("Should throw InvalidCredentialsError when the password provided do not match for the user found by the Repository", () => {
         const testData: ILoginParams = {
-            username: "teste",
+            displayName: "teste",
             password: "OutroTeste"
         };
 
         const sut = makeSut();
 
         UserRepositoryMock.prototype.retrieveUserByName.mockResolvedValue({
-            username: "teste",
+            displayName: "teste",
             password: "teste",
+            email: "teste@teste",
             userid: 0,
             notes: []
         });
@@ -54,15 +55,16 @@ describe("Login Usecase Unit tests", () => {
         expect(sut.run(testData)).rejects.toThrowError(InvalidCredentialsError);
     });
 
-    test("Should call the generateToken function and return a token when username and password provided match the UserRepository output", async () => {
+    test("Should call the generateToken function and return a token when displayName and password provided match the UserRepository output", async () => {
         const testData: ILoginParams = {
-            username: "teste",
+            displayName: "teste",
             password: "OutroTeste"
         };
 
         const stubReturn: IUser = {
             ...testData,
             userid: 0,
+            email: "teste@teste",
             notes: []
         };
 
@@ -77,7 +79,7 @@ describe("Login Usecase Unit tests", () => {
 
         expect(generateToken).toBeCalledWith({
             userid: stubReturn.userid,
-            username: stubReturn.username
+            displayName: stubReturn.displayName
         });
     });
 });

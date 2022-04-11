@@ -51,7 +51,8 @@ describe("Create Note Usecase Unit tests", () => {
 
         const fakeUser = {
             userid: 0,
-            username: "teste",
+            displayName: "teste",
+            email: "teste@teste",
             notes: []
         };
 
@@ -82,7 +83,8 @@ describe("Create Note Usecase Unit tests", () => {
 
         const fakeUser = {
             userid: 0,
-            username: "teste",
+            displayName: "teste",
+            email: "teste@teste",
             notes: []
         };
 

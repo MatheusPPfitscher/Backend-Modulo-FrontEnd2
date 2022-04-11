@@ -2,7 +2,8 @@ import { INote } from "../../../note/domain/model/note";
 
 export interface IUser {
     userid?: number;
-    username: string;
+    displayName: string;
+    email: string;
     password?: string;
     notes?: INote[];
 }

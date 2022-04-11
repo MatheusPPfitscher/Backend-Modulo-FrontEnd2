@@ -24,9 +24,9 @@ describe("Login Controller Integration tests", () => {
         await clearDatabases();
     });
 
-    test("If request is missing or empty username, should return error.msg: MissingFieldError", async () => {
+    test("If request is missing or empty displayName, should return error.msg: MissingFieldError", async () => {
         const testRequestBody: ILoginParams = {
-            username: "",
+            displayName: "",
             password: "teste"
         };
 
@@ -39,9 +39,9 @@ describe("Login Controller Integration tests", () => {
             });
     });
 
-    test("If username provided on request dont exist, should return error.msg: InvalidCredentialsError", async () => {
+    test("If displayName provided on request dont exist, should return error.msg: InvalidCredentialsError", async () => {
         const testRequestBody: ILoginParams = {
-            username: "usuarioQueNaoExiste",
+            displayName: "usuarioQueNaoExiste",
             password: "teste"
         };
 
@@ -54,7 +54,7 @@ describe("Login Controller Integration tests", () => {
             });
     });
 
-    test("if username provided exists but password is incorrect, should return error.msg: InvalidCredentialsError", async () => {
+    test("if displayName provided exists but password is incorrect, should return error.msg: InvalidCredentialsError", async () => {
         let testUser = await signUpTestUser();
         testUser.password = "garbage";
 
@@ -64,7 +64,7 @@ describe("Login Controller Integration tests", () => {
             .expect(409);
     });
 
-    test("if username and password, should return a valid token", async () => {
+    test("if displayName and password, should return a valid token", async () => {
         let testUser = await signUpTestUser();
 
         await request(app)

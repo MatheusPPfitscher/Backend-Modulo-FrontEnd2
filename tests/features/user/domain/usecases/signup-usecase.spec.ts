@@ -1,8 +1,7 @@
 import { UserRepository } from "../../../../../src/core/infra/database/repositories/db-user-repository";
-import { InvalidUsernameError } from "../../../../../src/features/user/domain/errors/empty-username-error";
+import { displayNameLengthError } from "../../../../../src/features/user/domain/errors/displayname-length-error";
 import { PasswordLengthError } from "../../../../../src/features/user/domain/errors/password-length-error";
 import { UserAlreadyExistsError } from "../../../../../src/features/user/domain/errors/user-already-exists-error";
-import { UsernameLengthError } from "../../../../../src/features/user/domain/errors/username-length-error";
 import { ISignUpParams, SignUpUseCase } from "../../../../../src/features/user/domain/usecases/signup-usecase";
 
 // mock all depedencies
@@ -22,21 +21,24 @@ describe("Sign Up Usecase Unit tests", () => {
         jest.resetAllMocks();
     });
 
-    test("When provided with username, should throw UsernameLengthError if the Username length is exceeded", () => {
+    test("When provided with an empty email field, should throw")
+    test("When provided with displayName, should throw displayNameLengthError if the displayName length is exceeded", () => {
         const testData: ISignUpParams = {
-            username: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-            password: ""
+            displayName: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            password: "",
+            email: "teste@teste"
         };
 
         const sut = makeSut();
 
-        expect(sut.run(testData)).rejects.toThrowError(UsernameLengthError);
+        expect(sut.run(testData)).rejects.toThrowError(displayNameLengthError);
     });
 
-    test("When provided username and password, should throw PasswordLengthError if the password length is exceeded", () => {
+    test("When provided displayName and password, should throw PasswordLengthError if the password length is exceeded", () => {
         const testData: ISignUpParams = {
-            username: "teste",
-            password: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            displayName: "teste",
+            password: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            email: "teste@teste"
         };
 
         const sut = makeSut();
@@ -46,8 +48,9 @@ describe("Sign Up Usecase Unit tests", () => {
     test(`When provided with a valid IUser object, Should throw UserAlreadyExistsError 
         if the UserRepository returns an object`, async () => {
         const testData: ISignUpParams = {
-            username: "teste",
-            password: "teste"
+            displayName: "teste",
+            password: "teste",
+            email: "teste@teste"
         };
 
         UserRepositoryMock.prototype.retrieveUserByName.mockResolvedValue({
@@ -65,15 +68,17 @@ describe("Sign Up Usecase Unit tests", () => {
             .toThrowError(UserAlreadyExistsError);
     });
 
-    test("Should return an IUser object when provided with a valid IUser object if username is available", async () => {
+    test("Should return an IUser object when provided with a valid IUser object if displayName is available", async () => {
         const testData: ISignUpParams = {
-            username: "teste",
-            password: "teste"
+            displayName: "teste",
+            password: "teste",
+            email: "teste@teste"
         };
 
         UserRepositoryMock.prototype.createUser.mockResolvedValue({
-            username: testData.username,
-            userid: 0
+            displayName: testData.displayName,
+            userid: 0,
+            email: testData.email
         });
 
         const sut = makeSut();
@@ -85,7 +90,7 @@ describe("Sign Up Usecase Unit tests", () => {
         expect(result)
             .toEqual(
                 expect.objectContaining({
-                    username: testData.username,
+                    displayName: testData.displayName,
                     userid: 0
                 }));
     });

@@ -11,8 +11,8 @@ export class UserRepository implements IUserRepository {
         this.repository = DatabaseConnection.getConnection().manager.getRepository(User);
     }
 
-    async retrieveUserByName(username: string): Promise<IUser | undefined> {
-        const result = await this.repository.findOne({ where: { username } });
+    async retrieveUserByName(displayName: string): Promise<IUser | undefined> {
+        const result = await this.repository.findOne({ where: { displayName } });
         return result;
     }
 
@@ -29,8 +29,9 @@ export class UserRepository implements IUserRepository {
         const userEntity = this.repository.create(userFormulary);
         await this.repository.save(userEntity);
         return {
-            username: userEntity.username,
-            userid: userEntity.userid
+            displayName: userEntity.displayName,
+            userid: userEntity.userid,
+            email: userEntity.email
         };
     }
 }

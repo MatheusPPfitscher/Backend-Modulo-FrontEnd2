@@ -1,4 +1,4 @@
-import { DomainError } from "../../../../core/domain/errors/domain-error";
+import { DomainError } from "./domain-error";
 
 export class ExpiredTokenError extends DomainError {
     constructor () {
