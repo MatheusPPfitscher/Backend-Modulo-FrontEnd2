@@ -25,7 +25,7 @@ describe("Edit Note Usecase Unit tests", () => {
 
     test("Should call noteRepository.editNote with testData and return result from noteRepository", async () => {
         const testData: IEditNoteParams = {
-            uid: "test-uid",
+            id: "test-id",
             title: "Something",
             details: "something something"
         };
@@ -40,7 +40,7 @@ describe("Edit Note Usecase Unit tests", () => {
 
     test("Should call cacheRepository.save and .setRefreshing(true) after noteRepository.editNote", async () => {
         const testData: IEditNoteParams = {
-            uid: "test-uid",
+            id: "test-id",
             title: "Something",
             details: "something something"
         };

@@ -11,11 +11,11 @@ export class ViewNoteController implements Controller {
         try {
             const useCaseData: IViewNoteParams = {
                 userid: res.locals.userid as number,
-                noteUid: req.params.uid
+                noteid: req.params.id
             };
 
             const result = await this.viewNoteUseCase.run(useCaseData);
-            successResponse(res, "NoteView", result);
+            successResponse(res, result);
         }
         catch (error) {
             failureResponse(res, error);

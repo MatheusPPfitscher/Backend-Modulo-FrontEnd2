@@ -31,7 +31,7 @@ export class SignUpUseCase implements IUseCase {
             throw new PasswordLengthError();
         }
 
-        const existingUser = await this.userRepository.retrieveUserByName(data.displayName);
+        const existingUser = await this.userRepository.retrieveUserByEmail(data.email);
         if (existingUser !== undefined) {
             throw new UserAlreadyExistsError();
         }

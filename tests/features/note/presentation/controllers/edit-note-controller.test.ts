@@ -26,9 +26,9 @@ describe("Edit Note Controller Integration tests", () => {
     });
 
     test("If request is missing auth header, should return error.msg: ExpiredTokenError", async () => {
-        const fakeUid = "UID-QUE-NAO-EXISTE";
+        const fakeid = "id-QUE-NAO-EXISTE";
         await request(app)
-            .put(`/note/${fakeUid}`)
+            .put(`/note/${fakeid}`)
             .send({})
             .expect(401)
             .expect((response) => {
@@ -47,7 +47,7 @@ describe("Edit Note Controller Integration tests", () => {
         };
 
         await request(app)
-            .put(`/note/${testNote!.uid}`)
+            .put(`/note/${testNote!.id}`)
             .auth(authTokenForUser, { type: "bearer" })
             .send(testRequestBody)
             .expect(400)
@@ -56,18 +56,18 @@ describe("Edit Note Controller Integration tests", () => {
             });
     });
 
-    test("If request uid do not exist on database, should return error.msg: NoteNotFound", async () => {
+    test("If request id do not exist on database, should return error.msg: NoteNotFound", async () => {
         const testUser = await signUpTestUser();
         const authTokenForUser = generateTestToken(testUser);
 
         const testRequestBody: IEditNoteParams = {
-            uid: "Non-Existe-Uid",
+            id: "Non-Existe-id",
             title: "Aquela note",
             details: "que não existe"
         };
 
         await request(app)
-            .put(`/note/${testRequestBody!.uid}`)
+            .put(`/note/${testRequestBody!.id}`)
             .auth(authTokenForUser, { type: "bearer" })
             .send(testRequestBody)
             .expect(404)
@@ -87,7 +87,7 @@ describe("Edit Note Controller Integration tests", () => {
         };
 
         await request(app)
-            .put(`/note/${testNote!.uid}`)
+            .put(`/note/${testNote!.id}`)
             .auth(authTokenForUser, { type: "bearer" })
             .send(testRequestBody)
             .expect(200)

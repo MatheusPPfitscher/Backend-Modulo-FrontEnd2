@@ -26,7 +26,7 @@ export class CreateNoteUseCase implements IUseCase {
                 details: data.details
             };
             const noteEntity = await this.noteRepository.createNote(user, noteData);
-            await this.cacheRepository.save(`note:${noteEntity.uid}`, noteEntity);
+            await this.cacheRepository.save(`note:${noteEntity.id}`, noteEntity);
             this.cacheRepository.setRefreshing(true);
             return noteEntity;
         } else throw new UserNotFoundError();

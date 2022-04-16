@@ -57,7 +57,7 @@ describe("Create Note Usecase Unit tests", () => {
         };
 
         const fakeNote = {
-            uid: "something",
+            id: "something",
             title: testData.title,
             details: testData.details
         };
@@ -89,7 +89,7 @@ describe("Create Note Usecase Unit tests", () => {
         };
 
         const fakeNote = {
-            uid: "something",
+            id: "something",
             title: testData.title,
             details: testData.details
         };

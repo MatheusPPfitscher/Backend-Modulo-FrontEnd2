@@ -1,4 +1,4 @@
 export interface IResponseBody {
-    message: string;
+    success: string;
     data?: any;
 }

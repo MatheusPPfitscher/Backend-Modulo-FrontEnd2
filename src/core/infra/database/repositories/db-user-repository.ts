@@ -11,8 +11,8 @@ export class UserRepository implements IUserRepository {
         this.repository = DatabaseConnection.getConnection().manager.getRepository(User);
     }
 
-    async retrieveUserByName(displayName: string): Promise<IUser | undefined> {
-        const result = await this.repository.findOne({ where: { displayName } });
+    async retrieveUserByEmail(email: string): Promise<IUser | undefined> {
+        const result = await this.repository.findOne({ where: { email } });
         return result;
     }
 

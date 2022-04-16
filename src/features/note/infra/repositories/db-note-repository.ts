@@ -19,7 +19,7 @@ export class NoteRepository implements INoteRepository {
         noteEntity.user = user;
         await this.repository.save(noteEntity);
         const result: INote = {
-            uid: noteEntity.uid,
+            id: noteEntity.id,
             title: noteEntity.title,
             details: noteEntity.details,
             created_at: noteEntity.created_at
@@ -33,7 +33,7 @@ export class NoteRepository implements INoteRepository {
             await this.repository.save(editedNote);
         } else throw new NoteNotFoundError();
         const result: INote = {
-            uid: editedNote.uid,
+            id: editedNote.id,
             title: editedNote.title,
             details: editedNote.details,
             created_at: editedNote.created_at
@@ -41,8 +41,8 @@ export class NoteRepository implements INoteRepository {
         return result;
     }
 
-    async removeNote(noteUid: string) {
-        const result = await this.repository.delete(noteUid);
+    async removeNote(noteid: string) {
+        const result = await this.repository.delete(noteid);
         return { affected: result.affected };
     }
 }

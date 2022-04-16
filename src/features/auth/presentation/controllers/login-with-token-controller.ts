@@ -6,18 +6,17 @@ import { ILoginWithTokenParams, LoginWithTokenUseCase } from "../../domain/useca
 
 
 export class LoginWithTokenController implements Controller {
-    constructor (private loginWithTokenUsecase: LoginWithTokenUseCase){}
+    constructor (private loginWithTokenUsecase: LoginWithTokenUseCase) { }
 
     async execute(req: Request, res: Response) {
         try {
-            const useCaseData: ILoginWithTokenParams ={
-                access_token: req.body.access_token
-            }
-            if (!useCaseData.access_token){
+            const useCaseData: ILoginWithTokenParams = req.body;
+            
+            if (!useCaseData.data.access_token) {
                 throw new MissingFieldError("access_token");
             }
             const logon = await this.loginWithTokenUsecase.run(useCaseData);
-            successResponse(res, "LogonSuccessful", logon);
+            successResponse(res, logon);
         }
         catch (error) {
             failureResponse(res, error);

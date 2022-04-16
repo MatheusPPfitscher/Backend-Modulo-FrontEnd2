@@ -6,7 +6,7 @@ import { User } from "./User";
 @Entity()
 export class Note implements INote {
     @PrimaryColumn({ type: 'uuid' })
-    uid: string;
+    id: string;
 
     @Column()
     title: string;
@@ -22,7 +22,7 @@ export class Note implements INote {
     user: User;
 
     @BeforeInsert()
-    generateUid() {
-        this.uid = uuid();
+    generateid() {
+        this.id = uuid();
     }
 }

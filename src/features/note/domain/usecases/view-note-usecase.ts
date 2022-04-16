@@ -6,7 +6,7 @@ import { INote } from "../model/note";
 
 export interface IViewNoteParams {
     userid: number;
-    noteUid?: string;
+    noteid?: string;
 }
 export class ViewNoteUseCase implements IUseCase {
     constructor (private userRepository: IUserRepository,
@@ -15,23 +15,23 @@ export class ViewNoteUseCase implements IUseCase {
     }
 
     async run(data: IViewNoteParams) {
-        if (data.noteUid) {
-            let noteCached = await this.cacheRepository.retrieve(`note:${data.noteUid}`);
+        if (data.noteid) {
+            let noteCached = await this.cacheRepository.retrieve(`note:${data.noteid}`);
             if (noteCached) {
-                return [noteCached];
+                return {notes: [noteCached]};
             }
         }
         const allCachedNotesFromUser = await this.cacheRepository.retrieve(`user:${data.userid}:notes`);
         if (allCachedNotesFromUser) {
             if (!this.cacheRepository.needRefreshing()) {
-                return allCachedNotesFromUser;
+                return {notes: allCachedNotesFromUser};
             }
         }
         const user = await this.userRepository.retrieveUserById(data.userid);
         if (user !== undefined) {
             let resultingNotes: INote[] = [];
-            if (data.noteUid) {
-                let retrievedNote = user.notes!.find(note => note.uid === data.noteUid);
+            if (data.noteid) {
+                let retrievedNote = user.notes!.find(note => note.id === data.noteid);
                 if (retrievedNote) {
                     resultingNotes.push(retrievedNote);
                 }
@@ -43,7 +43,7 @@ export class ViewNoteUseCase implements IUseCase {
             }
             await this.cacheRepository.save(`user:${data.userid}:notes`, resultingNotes);
             this.cacheRepository.setRefreshing(false);
-            return resultingNotes;
+            return {notes: resultingNotes};
         } else throw new UserNotFoundError();
     }
 }

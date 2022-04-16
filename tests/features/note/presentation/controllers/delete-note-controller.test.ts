@@ -25,9 +25,9 @@ describe("Delete Note Controller Integration tests", () => {
     });
 
     test("If request is missing auth header, should return error.msg: ExpiredTokenError", async () => {
-        const fakeUid = "UID-QUE-NAO-EXISTE";
+        const fakeid = "id-QUE-NAO-EXISTE";
         await request(app)
-            .delete(`/note/${fakeUid}`)
+            .delete(`/note/${fakeid}`)
             .send({})
             .expect(401)
             .expect((response) => {
@@ -42,7 +42,7 @@ describe("Delete Note Controller Integration tests", () => {
 
 
         await request(app)
-            .delete(`/note/${testNote!.uid}`)
+            .delete(`/note/${testNote!.id}`)
             .auth(authTokenForUser, { type: "bearer" })
             .send()
             .expect(200)

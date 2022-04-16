@@ -12,7 +12,7 @@ export class EditNoteController implements Controller {
     async execute(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): Promise<any> {
         try {
             const useCaseData: IEditNoteParams = {
-                uid: req.params.uid,
+                id: req.params.id,
                 title: req.body.title,
                 details: req.body.details
             };
@@ -22,7 +22,7 @@ export class EditNoteController implements Controller {
             }
 
             const result = await this.editNoteUseCase.run(useCaseData);
-            successResponse(res, "NoteEdited", result);
+            successResponse(res, result);
         }
         catch (error) {
             failureResponse(res, error);

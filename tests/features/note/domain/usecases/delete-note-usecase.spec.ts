@@ -22,7 +22,7 @@ const makeSut = () => {
 describe("Delete Note Usecase Unit tests", () => {
     test("Should call noteRepository.removeNote with testData and return result from noteRepository", async () => {
         const testData: IDeleteNoteParams = {
-            uid: "test-uid"
+            id: "test-id"
         };
 
         NoteRepositoryMock.prototype.removeNote.mockResolvedValue({ affected: 1 });
@@ -35,7 +35,7 @@ describe("Delete Note Usecase Unit tests", () => {
 
     test("Should call cacheRepository.save and .setRefreshing(true) after noteRepository.editNote", async () => {
         const testData: IDeleteNoteParams = {
-            uid: "test-uid"
+            id: "test-id"
         };
 
         const sut = makeSut();

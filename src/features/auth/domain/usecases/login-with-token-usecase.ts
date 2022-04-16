@@ -11,7 +11,9 @@ dotenv.config();
 const SECRET = process.env.TOKEN_SECRET as string;
 
 export interface ILoginWithTokenParams {
-    access_token: string;
+    data: {
+        access_token: string;
+    };
 }
 
 export class LoginWithTokenUseCase implements IUseCase {
@@ -19,14 +21,14 @@ export class LoginWithTokenUseCase implements IUseCase {
         private userRepository: IUserRepository
     ) { }
 
-    async run(data: ILoginWithTokenParams) {
-        const current_token = extractTokenFromHeader(data.access_token);
+    async run(loginWithTokenParams: ILoginWithTokenParams) {
+        const current_token = extractTokenFromHeader(loginWithTokenParams.data.access_token);
         let userData = jwt.verify(current_token, SECRET);
-        const userTryingToLogin = await this.userRepository.retrieveUserByName(userData.displayName);
+        const userTryingToLogin = await this.userRepository.retrieveUserByEmail(userData.email);
         if (userTryingToLogin !== undefined) {
-            const token = generateToken({ userid: userTryingToLogin!.userid!, displayName: userData.displayName });
+            const access_token = generateToken({ userid: userTryingToLogin!.userid!, displayName: userData.displayName });
             return {
-                token,
+                access_token,
                 user: {
                     userid: userTryingToLogin!.userid,
                     displayName: userTryingToLogin!.displayName,

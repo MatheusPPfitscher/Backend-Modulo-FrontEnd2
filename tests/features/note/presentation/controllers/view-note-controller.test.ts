@@ -37,7 +37,7 @@ describe("View Note Controller Integration tests", () => {
             });
     });
 
-    test("If not provided with a note uid, should return msg:NoteView and all notes from user", async () => {
+    test("If not provided with a note id, should return msg:NoteView and all notes from user", async () => {
         const testUser = await signUpTestUser();
         const authTokenForUser = generateTestToken(testUser);
         const fakeNotes = [await createNoteTester(testUser), await createNoteTester(testUser)];
@@ -49,23 +49,23 @@ describe("View Note Controller Integration tests", () => {
             .expect(200)
             .expect((response) => {
                 expect(response.body.msg).toEqual("NoteView");
-                expect(response.body.data[1].uid).toEqual(fakeNotes[1]!.uid);
+                expect(response.body.data[1].id).toEqual(fakeNotes[1]!.id);
             });;
     });
 
-    test("If provided with a valid note uid, should return msg:NoteView and the note requested", async () => {
+    test("If provided with a valid note id, should return msg:NoteView and the note requested", async () => {
         const testUser = await signUpTestUser();
         const authTokenForUser = generateTestToken(testUser);
         const fakeNotes = [await createNoteTester(testUser), await createNoteTester(testUser)];
 
         await request(app)
-            .get(`/note/${fakeNotes[1]!.uid}`)
+            .get(`/note/${fakeNotes[1]!.id}`)
             .auth(authTokenForUser, { type: "bearer" })
             .send()
             .expect(200)
             .expect((response) => {
                 expect(response.body.msg).toEqual("NoteView");
-                expect(response.body.data[0].uid).toEqual(fakeNotes[1]!.uid);
+                expect(response.body.data[0].id).toEqual(fakeNotes[1]!.id);
             });;
     });
 });

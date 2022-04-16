@@ -1,7 +1,7 @@
 import { IUser } from "../../../user/domain/model/user";
 
 export interface INote {
-    uid?: string;
+    id?: string;
     title: string,
     details: string;
     created_at?: Date;

@@ -26,7 +26,7 @@ describe("View Note Usecase Unit tests", () => {
         jest.resetAllMocks();
     });
 
-    test(`When userid provided dont exist and note uid is not provided, 
+    test(`When userid provided dont exist and note id is not provided, 
         should throw UserNotFoundError after UserRepository return undefined`, () => {
         const testData: IViewNoteParams = {
             userid: 0
@@ -39,17 +39,17 @@ describe("View Note Usecase Unit tests", () => {
         expect(sut.run(testData)).rejects.toThrowError(UserNotFoundError);
     });
 
-    test(`When provided with userid and note uid, if cacheRepository.retrieve returns an object for that note,
+    test(`When provided with userid and note id, if cacheRepository.retrieve returns an object for that note,
         should return this object`, async () => {
         const testData: IViewNoteParams = {
             userid: 0,
-            noteUid: "teste"
+            noteid: "teste"
         };
 
-        const cacheCallString = `note:${testData.noteUid}`;
+        const cacheCallString = `note:${testData.noteid}`;
 
         const fakeNote: INote = {
-            uid: "teste",
+            id: "teste",
             title: "teste",
             details: "grande teste"
         };
@@ -75,7 +75,7 @@ describe("View Note Usecase Unit tests", () => {
         const cacheCallString = `user:${testData.userid}:notes`;
 
         const fakeNote: INote = {
-            uid: "teste",
+            id: "teste",
             title: "teste",
             details: "grande teste"
         };
@@ -94,21 +94,21 @@ describe("View Note Usecase Unit tests", () => {
         expect(UserRepositoryMock.prototype.retrieveUserById).not.toHaveBeenCalled();
     });
 
-    test(`When provided with userid and note uid, if there no return from cache for both, if UserRepository returns  
-        a valid user, should return an array with only the note that matches the noteuid provided`, async () => {
+    test(`When provided with userid and note id, if there no return from cache for both, if UserRepository returns  
+        a valid user, should return an array with only the note that matches the noteid provided`, async () => {
         const testData: IViewNoteParams = {
             userid: 0,
-            noteUid: "teste"
+            noteid: "teste"
         };
 
         const fakeNoteOne: INote = {
-            uid: "teste",
+            id: "teste",
             title: "teste",
             details: "grande teste"
         };
 
         const fakeNoteTwo: INote = {
-            uid: "teste2",
+            id: "teste2",
             title: "teste2",
             details: "grande teste 2"
         };
@@ -139,14 +139,14 @@ describe("View Note Usecase Unit tests", () => {
         };
 
         const fakeNoteOne: INote = {
-            uid: "teste",
+            id: "teste",
             title: "teste",
             details: "grande teste",
             created_at: new Date("2022-02-16")
         };
 
         const fakeNoteTwo: INote = {
-            uid: "teste2",
+            id: "teste2",
             title: "teste2",
             details: "grande teste 2",
             created_at: new Date("2022-02-15")

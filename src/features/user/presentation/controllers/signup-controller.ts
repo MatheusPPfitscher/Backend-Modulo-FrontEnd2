@@ -21,7 +21,7 @@ export class UserController implements Controller {
             }
 
             const userCreation = await this.signUpUseCase.run(useCaseData);
-            successResponse(res, "UserCreated", userCreation);
+            successResponse(res, userCreation);
         }
         catch (error) {
             failureResponse(res, error);

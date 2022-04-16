@@ -4,8 +4,10 @@ import { generateToken } from "../../infra/adapters/token-generation";
 import { InvalidCredentialsError } from "../errors/invalid-credentials-error";
 
 export interface ILoginParams {
-    displayName: string,
-    password: string;
+    data: {
+        email: string,
+        password: string;
+    };
 }
 
 export class LoginUseCase implements IUseCase {
@@ -13,13 +15,13 @@ export class LoginUseCase implements IUseCase {
         private userRepository: IUserRepository
     ) { }
 
-    async run(data: ILoginParams) {
-        const userTryingToLogin = await this.userRepository.retrieveUserByName(data.displayName);
+    async run(loginParams: ILoginParams) {
+        const userTryingToLogin = await this.userRepository.retrieveUserByEmail(loginParams.data.email);
         if (userTryingToLogin !== undefined) {
-            if (userTryingToLogin.password === data.password) {
-                const token = generateToken({ userid: userTryingToLogin.userid!, displayName: data.displayName });
+            if (userTryingToLogin.password === loginParams.data.password) {
+                const access_token = generateToken({ userid: userTryingToLogin.userid!, displayName: userTryingToLogin.displayName });
                 return {
-                    token,
+                    access_token,
                     user: {
                         userid: userTryingToLogin.userid,
                         displayName: userTryingToLogin.displayName,

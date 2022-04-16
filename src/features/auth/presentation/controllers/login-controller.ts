@@ -10,14 +10,17 @@ export class LoginController implements Controller {
     async execute(req: Request, res: Response) {
         try {
             const useCaseData: ILoginParams = {
-                displayName: req.body.displayName,
-                password: req.body.password
+                data: {
+                    email: req.body.data.email,
+                    password: req.body.data.password
+                }
+
             };
-            if (!useCaseData.displayName) {
+            if (!useCaseData.data.email) {
                 throw new MissingFieldError("displayName");
             }
             const logon = await this.loginUseCase.run(useCaseData);
-            successResponse(res, "LogonSuccessful", logon);
+            successResponse(res, logon);
         }
         catch (error) {
             failureResponse(res, error);

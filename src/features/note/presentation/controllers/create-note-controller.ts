@@ -25,7 +25,7 @@ export class CreateNoteController implements Controller {
             }
 
             const result = await this.addNoteUseCase.run(useCaseData);
-            successResponse(res, "NoteCreated", result);
+            successResponse(res, result);
         }
         catch (error) {
             failureResponse(res, error);

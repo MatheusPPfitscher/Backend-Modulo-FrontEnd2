@@ -1,7 +1,24 @@
 require("dotenv/config");
 
+let config = {
+    type: "postgres",
+    url: process.env.DATABASE_URL,
+    entities: [process.env.ENTITIES_DIR],
+    migrations: [process.env.MIGRATIONS_DIR],
+    cli: {
+        entitiesDir: "src/core/infra/database/entities",
+        migrationsDir: "src/core/infra/database/migrations",
+    },
+    synchronize: false,
+    extra: {
+        // ssl: {
+        //     rejectUnauthorized: false,
+        // },
+    },
+};
+
 if (process.env.NODE_ENV === "prod") {
-    let config = {
+    config = {
         type: "postgres",
         url: process.env.DATABASE_URL,
         entities: [process.env.ENTITIES_DIR],
@@ -15,26 +32,6 @@ if (process.env.NODE_ENV === "prod") {
             ssl: {
                 rejectUnauthorized: false,
             },
-        },
-    };
-}
-
-
-if (process.env.NODE_ENV === "dev") {
-    let config = {
-        type: "postgres",
-        url: process.env.DATABASE_URL,
-        entities: [process.env.ENTITIES_DIR],
-        migrations: [process.env.MIGRATIONS_DIR],
-        cli: {
-            entitiesDir: "src/core/infra/database/entities",
-            migrationsDir: "src/core/infra/database/migrations",
-        },
-        synchronize: false,
-        extra: {
-            // ssl: {
-            //     rejectUnauthorized: false,
-            // },
         },
     };
 }

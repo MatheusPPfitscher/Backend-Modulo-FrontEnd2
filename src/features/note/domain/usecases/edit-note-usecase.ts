@@ -3,7 +3,7 @@ import { ICacheRepository } from "../../../../core/domain/model/cache-repository
 import { INoteRepository } from "../model/note-repository";
 
 export interface IEditNoteParams {
-    uid: string;
+    id: string;
     title: string;
     details: string;
 }
@@ -14,7 +14,7 @@ export class EditNoteUseCase implements IUseCase {
 
     async run(data: IEditNoteParams) {
         const result = this.noteRepository.editNote(data);
-        await this.cacheRepository.save(`note:${data.uid}`, data);
+        await this.cacheRepository.save(`note:${data.id}`, data);
         this.cacheRepository.setRefreshing(true);
         return result;
     }

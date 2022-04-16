@@ -38,11 +38,11 @@ export class NoteRouter {
 
         routes.post("/", appliedMiddlewares,
             (req: Request, res: Response) => createNoteController.execute(req, res));
-        routes.get("/:uid?", appliedMiddlewares,
+        routes.get("/:id?", appliedMiddlewares,
             (req: Request, res: Response) => viewNoteController.execute(req, res));
-        routes.put("/:uid", appliedMiddlewares,
+        routes.put("/:id", appliedMiddlewares,
             (req: Request, res: Response) => editNoteController.execute(req, res));
-        routes.delete("/:uid", appliedMiddlewares,
+        routes.delete("/:id", appliedMiddlewares,
             (req: Request, res: Response) => deleteNoteController.execute(req, res));
 
         return routes;
